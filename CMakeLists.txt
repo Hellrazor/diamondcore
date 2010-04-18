@@ -16,35 +16,46 @@ ADD_CUSTOM_TARGET(uninstall "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/c
 
 OPTION(DO_MYSQL "With MySQL support" 1)
 OPTION(DO_POSTGRESQL "With PostgreSQL support" 0) # not complete yet, may not link properly.
-OPTION(DO_SCRIPTS "With scripts" 1)
+OPTION(DO_SCRIPTS "With Scripts" 1)
 OPTION(DO_CLI "With CLI" 1)
 OPTION(DO_RA "With RA" 0)
 OPTION(DO_DEBUG "Debug mode" 0)
 OPTION(DO_WARN "Enable all compile warnings" 0)
-OPTION(LARGE_CELL "Large cell size" 0)
-OPTION(SHORT_SLEEP "Short sleep" 0)
 OPTION(CENTOS "CENTOS" 0)
-OPTION(USE_MULTI_THREAD_MAP "With Multithread maps" 0)
 
 SET(GENREV_SRC
 src/tools/genrevision/genrevision.cpp
 )
 
-ADD_EXECUTABLE(genrev
-${GENREV_SRC}
-)
-ADD_CUSTOM_TARGET("revision.h" ALL
-    COMMAND "${DIAMOND_BINARY_DIR}/genrev"
-    ${DIAMOND_SOURCE_DIR}
-    WORKING_DIRECTORY "${DIAMOND_SOURCE_DIR}/src/shared"
-    DEPENDS genrev
-)
+if (DO_DEBUG)
+    ADD_EXECUTABLE(genrev
+    ${GENREV_SRC}
+    )
+    ADD_CUSTOM_TARGET("revision_nr.h" ALL
+        COMMAND "${DiamondCore_BINARY_DIR}/genrev"
+        ${DiamondCore_SOURCE_DIR}
+        WORKING_DIRECTORY "${DiamondCore_SOURCE_DIR}/src/shared"
+        DEPENDS genrev
+    )
+else (DO_DEBUG)
+    ADD_EXECUTABLE(genrev
+    ${GENREV_SRC}
+    )
+    ADD_CUSTOM_TARGET("revision_nr.h" ALL
+        COMMAND "${DiamondCore_BINARY_DIR}/genrev"
+        ${DiamondCore_SOURCE_DIR}
+        WORKING_DIRECTORY "${DiamondCore_SOURCE_DIR}/src/shared"
+        DEPENDS genrev
+    )
+endif (DO_DEBUG)
 
 
 EXECUTE_PROCESS(
         COMMAND hg tip --template {rev}
-        OUTPUT_VARIABLE HG_REVISION
+        OUTPUT_VARIABLE _REVISION
 )
+
+message("* DiamondCore Revision: ${_REVISION}")
 
 IF (PREFIX)
     SET(CMAKE_INSTALL_PREFIX ${PREFIX})
@@ -77,13 +88,11 @@ IF(DO_MYSQL)
     ADD_DEFINITIONS(-DDO_MYSQL)
 ENDIF(DO_MYSQL)
 
-SET(SCRIPT_LIB Scripts)
+if(DO_SCRIPTS)
+message("* With DiamondCore Scripts")
+SET(SCRIPT_LIB scripts)
 SET(SCRIPT_INCLUDE src/scripts/include)
-ADD_DEFINITIONS(-DDO_SCRIPTS)
-
-IF (USE_MULTI_THREAD_MAP)
-  message("* With Multithread maps")
-ENDIF (USE_MULTI_THREAD_MAP)
+endif(DO_SCRIPTS)
 
 message("-- Miscellaneus options:")
 
@@ -103,27 +112,13 @@ endif(DO_RA)
 
 if(DO_DEBUG)
 message("* Debug mode ON")
-add_definitions(-g -DIAMOND_DEBUG)
+add_definitions(-g -DDIAMOND_DEBUG)
 endif(DO_DEBUG)
 
 if(DO_WARN)
     message("* All warnings mode")
     add_definitions(-Wall -Wfatal-errors -Wextra)
 endif(DO_WARN)
-
-if(LARGE_CELL)
-message("* Large cell size")
-add_definitions(-DLARGE_CELL)
-else(LARGE_CELL)
-message("* Small cell size")
-endif(LARGE_CELL)
-
-if(SHORT_SLEEP)
-message("* System sleep time is 50ms")
-add_definitions(-DSHORT_SLEEP)
-else(SHORT_SLEEP)
-message("* System sleep time is 100ms")
-endif(SHORT_SLEEP)
 
 IF(UNIX)
     IF(CENTOS)
@@ -168,7 +163,6 @@ IF (CMAKE_SYSTEM_NAME MATCHES "Darwin")
   add_definitions(-D__ASSERTMACROS__)
 ENDIF (CMAKE_SYSTEM_NAME MATCHES "Darwin")
 
-
 add_definitions(--no-warnings) #to make build look nice, no gcc nazi warnings.
 
 INCLUDE_DIRECTORIES(
@@ -182,6 +176,7 @@ src/shared/Database
 src/shared/vmap
 src/shared/pathfinding
 src/game 
+src/scripts
 src/scripts/base
 ${CMAKE_BINARY_DIR}
 ${SCRIPT_INCLUDE}

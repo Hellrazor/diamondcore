@@ -7,20 +7,22 @@ add_subdirectory(pathfinding)
 ########### next target ###############
 
 SET(shared_STAT_SRCS
-   ByteBuffer.h
-   Common.cpp
-   Common.h
-   Errors.h
-   Log.cpp
-   Log.h
-   Threading.cpp
-   Timer.h
-   Util.cpp
-   Util.h
-   WorldPacket.h
-   SystemConfig.h
+ByteBuffer.h
+Common.cpp
+Common.h
+Errors.h
+LockedQueue.h
+Log.cpp
+Log.h
+MemoryLeaks.cpp
+MemoryLeaks.h
+Threading.cpp
+Threading.h
+Util.cpp
+Util.h
+WorldPacket.h
 )
-add_definitions(-fopenmp)
+
 add_library(shared STATIC ${shared_STAT_SRCS})
 target_link_libraries(
 shared

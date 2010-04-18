@@ -19,56 +19,58 @@ Soap/soapServer.cpp
 Soap/soapStub.h
 )
 
-SET(worldserver_LINK_FLAGS "")
+SET(WorldServer_LINK_FLAGS "")
 
-add_executable(worldserver${worldserver_SRCS})
+add_executable(WorldServer ${WorldServer_SRCS})
 add_definitions(
--D_WORLD_CORE_CONFIG='"${CONF_DIR}/WorldServer.conf"'
+-D_WORLD_CONFIG='"${CONF_DIR}/WorldServer.conf"'
 )
 IF (DO_MYSQL)
-    SET(worldserver_LINK_FLAGS "-pthread ${worldserver_LINK_FLAGS}")
+    SET(WorldServer_LINK_FLAGS "-pthread ${WorldServer_LINK_FLAGS}")
 ENDIF(DO_MYSQL)
 IF (DO_POSTGRESQL)
-    SET(worldserver_LINK_FLAGS "-pthread ${worldserver_LINK_FLAGS}")
+    SET(WorldServer_LINK_FLAGS "-pthread ${WorldServer_LINK_FLAGS}")
 ENDIF(DO_POSTGRESQL)
 
-
 IF (CMAKE_SYSTEM_NAME MATCHES "Darwin")
-    SET(worldserver_LINK_FLAGS "-framework Carbon ${worldserver_LINK_FLAGS}")
+    SET(WorldServer_LINK_FLAGS "-framework Carbon ${WorldServer_LINK_FLAGS}")
     SET(SCRIPT_LIB "")
 ENDIF (CMAKE_SYSTEM_NAME MATCHES "Darwin")
 
-SET_TARGET_PROPERTIES(worldserver PROPERTIES LINK_FLAGS "${worldserver_LINK_FLAGS}")
+SET_TARGET_PROPERTIES(WorldServer PROPERTIES LINK_FLAGS "${WorldServer_LINK_FLAGS}")
 
 target_link_libraries(
-worldserver
+WorldServer
 game
 shared
 zlib
-xframework
+framework
 sockets
 database
 auth
 config
-pathfinding
 vmaps
+pathfinding
 g3dlite
 ${READLINE_LIBRARY}
-${TERMCAP_LIBRARY}
-gomp
 ${SCRIPT_LIB}
 ${MYSQL_LIBRARIES}
 ${POSTGRESQL_LIBRARIES}
 ${SSLLIB}
 ${ACE_LIBRARY}
-${ZLIB} 
+${ZLIB}
 ${OSX_LIBS}
 )
 
-install(TARGETS worldserver DESTINATION bin)
+IF (CENTOS)
+target_link_libraries(
+WorldServer
+termcap
+)
+ENDIF (CENTOS)
 
+install(TARGETS WorldServer DESTINATION bin)
 
 ########### install files ###############
 
-install(FILES  worldserver.conf.dist DESTINATION bin)
-
+install(FILES  worldserver.conf.dist DESTINATION etc)
