@@ -167,7 +167,7 @@ void GameEventMgr::LoadFromDB()
     mGameEventCreatureGuids.resize(mGameEvent.size()*2-1);
     //                                   1              2
     result = WorldDatabase.Query("SELECT creature_spawns.guid, game_event_creature.event "
-        "FROM creature_spawns JOIN game_event_creature ON gameobject_spawns.guid = game_event_creature.guid");
+        "FROM creature_spawns JOIN game_event_creature ON creature_spawns.guid = game_event_creature.guid");
 
     count = 0;
     if( !result )
@@ -239,11 +239,11 @@ void GameEventMgr::LoadFromDB()
     }
 
     mGameEventModelEquip.resize(mGameEvent.size());
-    //                                   0              1                             2
+    //                                   0              1                              2
     result = WorldDatabase.Query("SELECT creature_spawns.guid, game_event_model_equip.event, game_event_model_equip.modelid,"
     //   3
         "game_event_model_equip.equipment_id "
-        "FROM creature_spawns JOIN game_event_model_equip ON gameobject_spawns.guid=game_event_model_equip.guid");
+        "FROM creature_spawns JOIN game_event_model_equip ON creature_spawns.guid=game_event_model_equip.guid");
 
     count = 0;
     if( !result )

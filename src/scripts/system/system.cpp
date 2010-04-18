@@ -23,7 +23,7 @@ SystemMgr& SystemMgr::Instance()
 void SystemMgr::LoadVersion()
 {
     //Get Version information
-    QueryResult* pResult = DSDatabase.PQuery("SELECT scripts_version FROM db_version LIMIT 1");
+    QueryResult* pResult = DSDatabase.PQuery("SELECT script_version FROM version LIMIT 1");
 
     if (pResult)
     {
