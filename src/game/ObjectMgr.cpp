@@ -4520,44 +4520,41 @@ void ObjectMgr::LoadInstanceTemplate()
     for(uint32 i = 0; i < sInstanceTemplate.MaxEntry; i++)
     {
         InstanceTemplate const* temp = GetInstanceTemplate(i);
-        if(!temp)
+        if (!temp)
             continue;
 
         MapEntry const* mapEntry = sMapStore.LookupEntry(temp->map);
-		if (!mapEntry)
-		{
-			sLog.outErrorDb("ObjectMgr::LoadInstanceTemplate: bad mapid %d for template!", temp->map);
-			sInstanceTemplate.EraseEntry(i);
-			continue;
-		}
-		
-		if (mapEntry->IsContinent())
-		{
-			sLog.outErrorDb("ObjectMgr::LoadInstanceTemplate: continent mapid %d for template!", temp->map);
-			sInstanceTemplate.EraseEntry(i);
-			continue;
-		}
-		sLog.outErrorDb("ObjectMgr::LoadInstanceTemplate: bad mapid %d for template!", temp->map);
+        if (!mapEntry)
+        {
+            sLog.outErrorDb("ObjectMgr::LoadInstanceTemplate: bad mapid %d for template!", temp->map);
+            sInstanceTemplate.EraseEntry(i);
+            continue;
+        }
+
+        if (mapEntry->IsContinent())
+        {
+            sLog.outErrorDb("ObjectMgr::LoadInstanceTemplate: continent mapid %d for template!", temp->map);
+            sInstanceTemplate.EraseEntry(i);
+            continue;
+        }
 
         if (temp->parent > 0)
         {
-            // check existence 
-			
-			MapEntry const* parentEntry = sMapStore.LookupEntry(temp->parent);
-			
-			if (!parentEntry)
-			{
-				sLog.outErrorDb("ObjectMgr::LoadInstanceTemplate: bad parent map id for instance template %d template!", parentEntry,temp->map);
-				const_cast<InstanceTemplate*>(temp)->parent = 0;
-				continue;
-			}
-			
-			if (parentEntry->IsContinent())
-			{
-				sLog.outErrorDb("ObjectMgr::LoadInstanceTemplate: parent point to continent map id %u for instance template %d template, ignored, need be set only for non-continent parents!", parentEntry->MapID,temp->map);
-				const_cast<InstanceTemplate*>(temp)->parent = 0;
-				continue;
-			}
+            // check existence
+            MapEntry const* parentEntry = sMapStore.LookupEntry(temp->parent);
+            if (!parentEntry)
+            {
+                sLog.outErrorDb("ObjectMgr::LoadInstanceTemplate: bad parent map id for instance template %d template!", parentEntry,temp->map);
+                const_cast<InstanceTemplate*>(temp)->parent = 0;
+                continue;
+            }
+
+            if (parentEntry->IsContinent())
+            {
+                sLog.outErrorDb("ObjectMgr::LoadInstanceTemplate: parent point to continent map id %u for instance template %d template, ignored, need be set only for non-continent parents!", parentEntry->MapID,temp->map);
+                const_cast<InstanceTemplate*>(temp)->parent = 0;
+                continue;
+            }
         }
     }
 
