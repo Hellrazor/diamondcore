@@ -1,0 +1,6 @@
+add_subdirectory(framework)
+add_subdirectory(game)
+add_subdirectory(shared)
+add_subdirectory(worldserver)
+add_subdirectory(logonserver)
+add_subdirectory(scripts)
