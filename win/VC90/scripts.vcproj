@@ -2664,6 +2664,14 @@
 				RelativePath="..\..\src\scripts\include\precompiled.h"
 				>
 			</File>
+                        <File
+				RelativePath="..\..\src\scripts\include\sc_boss_spell_worker.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\scripts\include\sc_boss_spell_worker.h"
+				>
+			</File> 
 			<File
 				RelativePath="..\..\src\scripts\include\sc_creature.cpp"
 				>

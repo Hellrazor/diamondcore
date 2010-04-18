@@ -16,6 +16,11 @@ Script *m_scripts[MAX_SCRIPTS];
 
 Config DSConfig;
 
+QueryResult* strDSPquery(char* str)
+{
+	return DSDatabase.Query(str);
+}
+
 void FillSpellSummary();
 
 void LoadDatabase()
@@ -44,9 +49,6 @@ void LoadDatabase()
         error_log("DS: Unable to connect to Database. Load database aborted.");
         return;
     }
-
-    DSDatabase.HaltDelayThread();
-
 }
 
 struct TSpellSummary {
@@ -64,6 +66,7 @@ void ScriptsFree()
     for(int i=0; i<MAX_SCRIPTS; ++i)
         delete m_scripts[i];
 
+	DSDatabase.HaltDelayThread();
     num_sc_scripts = 0;
 }
 
