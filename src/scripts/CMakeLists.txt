@@ -1,7 +1,7 @@
 
 ########### next target ###############
 
-SET(script_LIB_SRCS
+SET(SCRIPT_LIB_SRCS
    ScriptMgr.cpp
    ScriptMgr.h
    config.h
@@ -498,7 +498,7 @@ SET(script_LIB_SRCS
    system/system.h
 )
 
-add_library(scripts SHARED ${scripts_LIB_SRCS})
+add_library(scripts SHARED ${SCRIPT_LIB_SRCS})
 
 add_definitions(-D_SCRIPTS_CONFIG='"${CONF_DIR}/WorldsServer.conf"')
 

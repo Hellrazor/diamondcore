@@ -32,7 +32,7 @@ src/tools/genrevision/genrevision.cpp
 ADD_EXECUTABLE(genrev
 ${GENREV_SRC}
 )
-ADD_CUSTOM_TARGET("revision.h" ALL
+ADD_CUSTOM_TARGET(ALL
     COMMAND "${DIAMOND_BINARY_DIR}/genrev"
     ${DIAMOND_SOURCE_DIR}
     WORKING_DIRECTORY "${DIAMOND_SOURCE_DIR}/src/shared"
