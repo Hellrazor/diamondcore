@@ -17,7 +17,7 @@ GameObject* GetClosestGameObjectWithEntry(WorldObject* pSource, uint32 uiEntry, 
     Diamond::NearestGameObjectEntryInObjectRangeCheck go_check(*pSource, uiEntry, fMaxSearchRange);
     Diamond::GameObjectLastSearcher<Diamond::NearestGameObjectEntryInObjectRangeCheck> searcher(pSource, pGo, go_check);
 
-    GridTypeVisitor<Diamond::GameObjectLastSearcher<Diamond::NearestGameObjectEntryInObjectRangeCheck>>::Grid go_searcher(searcher);
+    GridTypeVisitor<Diamond::GameObjectLastSearcher<Diamond::NearestGameObjectEntryInObjectRangeCheck> >::Grid go_searcher(searcher);
 
     cell.Visit(pair, go_searcher,*(pSource->GetMap()), *pSource, fMaxSearchRange);
 
@@ -37,7 +37,7 @@ Creature* GetClosestCreatureWithEntry(WorldObject* pSource, uint32 uiEntry, floa
     Diamond::NearestCreatureEntryWithLiveStateInObjectRangeCheck creature_check(*pSource, uiEntry, true, fMaxSearchRange);
     Diamond::CreatureLastSearcher<Diamond::NearestCreatureEntryWithLiveStateInObjectRangeCheck> searcher(pSource, pCreature, creature_check);
 
-    GridTypeVisitor<Diamond::CreatureLastSearcher<Diamond::NearestCreatureEntryWithLiveStateInObjectRangeCheck>>::Grid creature_searcher(searcher);
+    GridTypeVisitor<Diamond::CreatureLastSearcher<Diamond::NearestCreatureEntryWithLiveStateInObjectRangeCheck> >::Grid creature_searcher(searcher);
 
     cell.Visit(pair, creature_searcher,*(pSource->GetMap()), *pSource, fMaxSearchRange);
 
@@ -53,7 +53,7 @@ void GetGameObjectListWithEntryInGrid(std::list<GameObject*>& lList , WorldObjec
 
     AllGameObjectsWithEntryInRange check(pSource, uiEntry, fMaxSearchRange);
     Diamond::GameObjectListSearcher<AllGameObjectsWithEntryInRange> searcher(pSource, lList, check);
-    GridTypeVisitor<Diamond::GameObjectListSearcher<AllGameObjectsWithEntryInRange>>::Grid visitor(searcher);
+    GridTypeVisitor<Diamond::GameObjectListSearcher<AllGameObjectsWithEntryInRange> >::Grid visitor(searcher);
 
     cell.Visit(pair, visitor, *(pSource->GetMap()), *pSource, fMaxSearchRange);
 }
@@ -67,7 +67,7 @@ void GetCreatureListWithEntryInGrid(std::list<Creature*>& lList, WorldObject* pS
 
     AllCreaturesOfEntryInRange check(pSource, uiEntry, fMaxSearchRange);
     Diamond::CreatureListSearcher<AllCreaturesOfEntryInRange> searcher(pSource, lList, check);
-    GridTypeVisitor<Diamond::CreatureListSearcher<AllCreaturesOfEntryInRange>>::Grid visitor(searcher);
+    GridTypeVisitor<Diamond::CreatureListSearcher<AllCreaturesOfEntryInRange> >::Grid visitor(searcher);
 
     cell.Visit(pair, visitor, *(pSource->GetMap()), *pSource, fMaxSearchRange);
 }
