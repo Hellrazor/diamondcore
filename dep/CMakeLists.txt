@@ -1,4 +1,4 @@
-if(BUILD_ACE)
+#if(BUILD_ACE)
 #add_subdirectory(ACE_wrappers)
 #endif(BUILD_ACE)
 add_subdirectory(include)

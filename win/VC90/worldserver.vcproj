@@ -651,14 +651,6 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\src\worldserver\Soap\Soap.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\Soap\Soap.h"
-			>
-		</File>
-		<File
 			RelativePath="..\..\src\worldserver\Master.cpp"
 			>
 		</File>
@@ -674,30 +666,7 @@
 			RelativePath="..\..\src\worldserver\RASocket.h"
 			>
 		</File>
-		<File
-			RelativePath="..\..\src\worldserver\Soap\soapC.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\Soap\soapH.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\Soap\soapServer.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\Soap\soapStub.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\dep\src\gsoap\stdsoap2.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\dep\include\gsoap\stdsoap2.h"
-			>
-		</File>
+
 		<File
 			RelativePath="..\..\src\shared\WheatyExceptionReport.cpp"
 			>

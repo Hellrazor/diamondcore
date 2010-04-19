@@ -36,7 +36,6 @@
 #include "RASocket.h"
 #include "ScriptCalls.h"
 #include "Util.h"
-#include "Soap/Soap.h"
 
 #include <ace/OS_NS_signal.h>
 #include <ace/TP_Reactor.h>
@@ -266,18 +265,6 @@ int Master::Run()
     }
     #endif
 
-    ///- Start soap serving thread
-    ACE_Based::Thread* soap_thread = NULL;
-
-    if(sConfig.GetBoolDefault("SOAP.Enabled", false))
-    {
-        SoapRunnable *runnable = new SoapRunnable();
-
-        runnable->setListenArguments(sConfig.GetStringDefault("SOAP.IP", "127.0.0.1"), sConfig.GetIntDefault("SOAP.Port", 7878));
-        soap_thread = new ACE_Based::Thread(runnable);
-    }
-
-
     uint32 realCurrTime, realPrevTime;
     realCurrTime = realPrevTime = getMSTime();
 
@@ -309,14 +296,6 @@ int Master::Run()
     {
         freeze_thread->destroy();
         delete freeze_thread;
-    }
-
-    ///- Stop soap thread
-    if(soap_thread)
-    {
-        soap_thread->wait();
-        soap_thread->destroy();
-        delete soap_thread;
     }
 
     ///- Set server offline in realmlist

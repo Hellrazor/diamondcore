@@ -1,7 +1,7 @@
 
 ########### next target ###############
 
-SET(worldserver_SRCS
+SET(WorldServer_SRCS
 CliRunnable.cpp
 CliRunnable.h
 Main.cpp
@@ -11,12 +11,6 @@ RASocket.cpp
 RASocket.h
 WorldRunnable.cpp
 WorldRunnable.h
-Soap/Soap.cpp
-Soap/Soap.h
-Soap/soapC.cpp
-Soap/soapH.h
-Soap/soapServer.cpp
-Soap/soapStub.h
 )
 
 SET(WorldServer_LINK_FLAGS "")
@@ -49,10 +43,12 @@ sockets
 database
 auth
 config
-vmaps
 pathfinding
+vmaps
 g3dlite
 ${READLINE_LIBRARY}
+${TERMCAP_LIBRARY}
+gomp
 ${SCRIPT_LIB}
 ${MYSQL_LIBRARIES}
 ${POSTGRESQL_LIBRARIES}
@@ -62,15 +58,9 @@ ${ZLIB}
 ${OSX_LIBS}
 )
 
-IF (CENTOS)
-target_link_libraries(
-WorldServer
-termcap
-)
-ENDIF (CENTOS)
-
 install(TARGETS WorldServer DESTINATION bin)
 
 ########### install files ###############
 
 install(FILES  worldserver.conf.dist DESTINATION etc)
+

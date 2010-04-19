@@ -236,7 +236,7 @@ bool ChatHandler::HandleDebugMoveMapCommand(const char* args)
  
     Diamond::AnyUnitInObjectRangeCheck go_check(m_session->GetPlayer(), range); // 25 yards check
     Diamond::CreatureListSearcher<Diamond::AnyUnitInObjectRangeCheck> go_search(m_session->GetPlayer(), creatureList, go_check);
-    GridTypeVisitor<Diamond::CreatureListSearcher<Diamond::AnyUnitInObjectRangeCheck>>::Grid go_visit(go_search);
+    GridTypeVisitor<Diamond::CreatureListSearcher<Diamond::AnyUnitInObjectRangeCheck> >::Grid go_visit(go_search);
  
     // Get Creatures
     cell.Visit(pair, go_visit, *(m_session->GetPlayer()->GetMap()), *(m_session->GetPlayer()), range);
