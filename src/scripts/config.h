@@ -20,7 +20,7 @@
 #define SC_CONFIG_H
 
 #include "Platform/CompilerDefs.h"
-#include "revision.h"
+#include "revision_nr.h"
 
 // Format is YYYYMMDDRR where RR is the change in the conf file
 // for that day.
@@ -35,7 +35,7 @@
 #endif
 
 #ifndef _VERSION
-  #define _VERSION "Revision [" REVISION_ID "] " REVISION_DATE " " REVISION_TIME
+#define _VERSION "Version: " REVISION_NR
 #endif
 
 // The path to config files
