@@ -90,7 +90,7 @@
 # define _LOGON_CONFIG SYSCONFDIR "LogonServer.conf"
 #endif
 
-#define _FULLVERSION"Version: " REVISION_NR " for" _ENDIAN_PLATFORM
+#define _FULLVERSION "Version: " REVISION_NR
 
 #define DEFAULT_PLAYER_LIMIT 1000
 #define DEFAULT_WORLDSERVER_PORT 8085 //8129
