@@ -32,7 +32,6 @@
 template<class T, typename D>
 void TargetedMovementGeneratorMedium<T,D>::_setTargetLocation(T &owner)
 {
-    sLog.outError("Targeted: setTargetLocation for %s", owner.GetName());
     if (!i_target.isValid() || !i_target->IsInWorld())
         return;
 
@@ -86,12 +85,10 @@ void TargetedMovementGeneratorMedium<T,D>::_setTargetLocation(T &owner)
         i_path.End.x = x;
         i_path.End.y = y;
         i_path.End.z = z;
-        sLog.outError("Targeted: Need to update path.");
         i_target->GetMap()->UpdatePath(&i_path);
     }
     else
     {
-        sLog.outError("Targeted: Need to get path.");
         // path doesn't exist, create one
         i_path = i_target->GetMap()->GetPath(myx,myy,myz,x,y,z);
     }
@@ -99,12 +96,10 @@ void TargetedMovementGeneratorMedium<T,D>::_setTargetLocation(T &owner)
     Traveller<T> traveller(owner);
     if(i_path.Length)
     {
-        sLog.outError("Targeted: got path!\n");
         i_destinationHolder.SetDestination(traveller, i_path.NextDestination.x,i_path.NextDestination.y,i_path.NextDestination.z);
     }
     else
     {
-        sLog.outError("Targeted: Didn't get path.\n");
         i_destinationHolder.SetDestination(traveller, x, y, z);
     }
 
@@ -144,7 +139,6 @@ void TargetedMovementGeneratorMedium<Creature,FollowMovementGenerator<Creature> 
 template<class T, typename D>
 bool TargetedMovementGeneratorMedium<T,D>::Update(T &owner, const uint32 & time_diff)
 {
-    sLog.outError("Targeted: Update for %s", owner.GetName());
     if (!i_target.isValid() || !i_target->IsInWorld())
         return false;
 
