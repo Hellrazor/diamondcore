@@ -199,10 +199,6 @@ SET(SCRIPT_LIB_SRCS
    scripts/eastern_kingdoms/zulgurub/boss_wushoolay.cpp
    scripts/eastern_kingdoms/zulgurub/instance_zulgurub.cpp
    scripts/eastern_kingdoms/zulgurub/zulgurub.h
-   scripts/examples/example_creature.cpp
-   scripts/examples/example_escort.cpp
-   scripts/examples/example_gossip_codebox.cpp
-   scripts/examples/example_misc.cpp
    scripts/kalimdor/ashenvale.cpp
    scripts/kalimdor/azshara.cpp
    scripts/kalimdor/azuremyst_isle.cpp
