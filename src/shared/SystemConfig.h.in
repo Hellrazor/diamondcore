@@ -24,12 +24,13 @@
 #endif
 
 #include "Platform/Define.h"
+#include "revision_nr.h"
 
 #ifndef _VERSION
 #if PLATFORM == PLATFORM_WINDOWS
-# define _VERSION(REVD,REVT,REVN,REVH) "0.3.0-DEV" " (" REVD " " REVT " Revision " REVN " - " REVH ")"
+# define _VERSION "Version: " REVISION_NR
 #else
-# define _VERSION(REVD,REVT,REVN,REVH) "@VERSION@" " (" REVD " " REVT " Revision " REVN " - " REVH ")"
+# define _VERSION "Version: " REVISION_NR
 #endif
 #endif
 
@@ -67,8 +68,8 @@
 # else
 # define _ENDIAN_PLATFORM "Win32 (" _ENDIAN_STRING ")"
 # endif
-# define _WORLD_CONFIG SYSCONFDIR"WorldServer.conf"
-# define _LOGON_CONFIG SYSCONFDIR"LogonServer.conf"
+# define _WORLD_CONFIG SYSCONFDIR "WorldServer.conf"
+# define _LOGON_CONFIG SYSCONFDIR "LogonServer.conf"
 #else
 # if defined (__FreeBSD__)
 # define _ENDIAN_PLATFORM "FreeBSD_"ARCHITECTURE" (" _ENDIAN_STRING ")"
@@ -85,11 +86,11 @@
 # else
 # define _ENDIAN_PLATFORM "Unix_"ARCHITECTURE" (" _ENDIAN_STRING ")"
 # endif
-# define _WORLD_CONFIG SYSCONFDIR"WorldServer.conf"
-# define _LOGON_CONFIG SYSCONFDIR"LogonServer.conf"
+# define _WORLD_CONFIG SYSCONFDIR "WorldServer.conf"
+# define _LOGON_CONFIG SYSCONFDIR "LogonServer.conf"
 #endif
 
-#define _FULLVERSION(REVD,REVT,REVN,REVH) _PACKAGENAME "/" _VERSION(REVD,REVT,REVN,REVH) " for " _ENDIAN_PLATFORM
+#define _FULLVERSION"Version: " REVISION_NR " for" _ENDIAN_PLATFORM
 
 #define DEFAULT_PLAYER_LIMIT 1000
 #define DEFAULT_WORLDSERVER_PORT 8085 //8129

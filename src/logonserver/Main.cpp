@@ -29,7 +29,6 @@
 #include "sockets/ListenSocket.h"
 #include "AuthSocket.h"
 #include "SystemConfig.h"
-#include "revision.h"
 #include "revision_nr.h"
 #include "Util.h"
 #include <openssl/opensslv.h>
@@ -94,7 +93,7 @@ extern int main(int argc, char **argv)
 
         if( strcmp(argv[c],"--version") == 0)
         {
-            printf("%s\n", _FULLVERSION(REVISION_DATE,REVISION_TIME,REVISION_NR,REVISION_ID));
+            printf("%s\n", _FULLVERSION);
             return 0;
         }
 
@@ -145,7 +144,7 @@ extern int main(int argc, char **argv)
     }
     sLog.Initialize();
 
-    sLog.outString( "%s [realm-daemon]", _FULLVERSION(REVISION_DATE,REVISION_TIME,REVISION_NR,REVISION_ID) );
+    sLog.outString( "%s [realm-daemon]", _FULLVERSION);
     sLog.outString( "<Ctrl-C> to stop.\n" );
     sLog.outString("Using configuration file %s.", cfg_file);
 
@@ -154,7 +153,7 @@ extern int main(int argc, char **argv)
     if (confVersion < _LOGONCONFVERSION)
     {
         sLog.outError("*****************************************************************************");
-        sLog.outError(" WARNING: Your realmd.conf version indicates your conf file is out of date!");
+        sLog.outError(" WARNING: Your LogonServer.conf version indicates your conf file is out of date!");
         sLog.outError("          Please check for updates, as your current default values may cause");
         sLog.outError("          strange behavior.");
         sLog.outError("*****************************************************************************");
