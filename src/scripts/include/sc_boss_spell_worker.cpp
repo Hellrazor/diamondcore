@@ -570,7 +570,7 @@ Unit* BossSpellWorker::SelectLowHPFriendly(float fRange, uint32 uiMinHPDiff)
     Diamond::MostHPMissingInRange u_check(boss, fRange, uiMinHPDiff);
     Diamond::UnitLastSearcher<Diamond::MostHPMissingInRange> searcher(boss, pUnit, u_check);
 
-    GridTypeVisitor<Diamond::UnitLastSearcher<Diamond::MostHPMissingInRange>>::Grid grid_unit_searcher(searcher);
+    GridTypeVisitor<Diamond::UnitLastSearcher<Diamond::MostHPMissingInRange> >::Grid grid_unit_searcher(searcher);
 
     cell.Visit(p, grid_unit_searcher, *(pMap), *boss, fRange);
 
