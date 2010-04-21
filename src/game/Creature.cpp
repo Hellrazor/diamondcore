@@ -69,7 +69,7 @@ bool VendorItemData::RemoveItem( uint32 item_id )
             found = true;
         }
 		else
-			++i
+			++i;
     }
 
     return found;
