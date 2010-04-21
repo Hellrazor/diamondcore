@@ -6644,13 +6644,6 @@ bool Unit::HandleDummyAuraProc(Unit *pVictim, uint32 damage, Aura* triggeredByAu
                         CastSpell(target,53739,true,NULL,triggeredByAura);
                     break;
                 }
-                // Glyph of Flash of Light
-                case 54936:
-                {
-                    triggered_spell_id = 54957;
-                    basepoints[0] = triggerAmount*damage/100;
-                    break;
-                }
                 // Glyph of Holy Light
                 case 54937:
                 {
@@ -9382,7 +9375,7 @@ uint32 Unit::SpellDamageBonus(Unit *pVictim, SpellEntry const *spellProto, uint3
                 }
             }
 
-			//Death Coil        
+            //Death Coil        
             if (spellProto->SpellFamilyFlags & UI64LIT(0x002000))
             {
                  // search for Item - Death Knight T8 DPS Relic
