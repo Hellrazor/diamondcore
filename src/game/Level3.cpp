@@ -816,6 +816,18 @@ bool ChatHandler::HandleReloadQuestTemplateCommand(const char*)
     return true;
 }
 
+bool ChatHandler::HandleReloadCreatureTemplateCommand(const char*)
+{
+}
+
+bool ChatHandler::HandleReloadItemTemplateCommand(const char*)
+{
+}
+
+bool ChatHandler::HandleReloadGameObjectTemplateCommand(const char*)
+{
+}
+
 bool ChatHandler::HandleReloadLootTemplatesCreatureCommand(const char*)
 {
     sLog.outString( "Re-Loading Loot Tables... (`creature_loot_template`)" );
