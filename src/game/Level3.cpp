@@ -818,14 +818,32 @@ bool ChatHandler::HandleReloadQuestTemplateCommand(const char*)
 
 bool ChatHandler::HandleReloadCreatureTemplateCommand(const char*)
 {
+	sLog.outString("ReLoading creature_template");
+	sObjectMgr.LoadCreatureTemplates();
+
+	SendGlobalSysMessage("DB table creature_template reloaded.");
+
+	return true;
 }
 
 bool ChatHandler::HandleReloadItemTemplateCommand(const char*)
 {
+	sLog.outString("ReLoading item_template");
+	sObjectMgr.LoadItemPrototypes();
+
+	SendGlobalSysMessage("DB table item_template reloaded.");
+
+	return true;
 }
 
 bool ChatHandler::HandleReloadGameObjectTemplateCommand(const char*)
 {
+	sLog.outString("ReLoading gameobject_template");
+	sObjectMgr.LoadGameobjectInfo();
+
+	SendGlobalSysMessage("DB table gameobject_template reloaded.");
+
+	return true;
 }
 
 bool ChatHandler::HandleReloadLootTemplatesCreatureCommand(const char*)

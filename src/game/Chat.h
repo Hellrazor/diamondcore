@@ -405,7 +405,7 @@ class ChatHandler
         bool HandleReloadQuestTemplateCommand(const char* args);
 		bool HandleReloadCreatureTemplateCommand(const char* args);
 		bool HandleReloadItemTemplateCommand(const char* args);
-		bool HandleReloadGameobjectTemplateCommand(const char* args);
+		bool HandleReloadGameObjectTemplateCommand(const char* args);
         bool HandleReloadReservedNameCommand(const char*);
         bool HandleReloadSkillDiscoveryTemplateCommand(const char* args);
         bool HandleReloadSkillExtraItemTemplateCommand(const char* args);
