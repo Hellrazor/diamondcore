@@ -2578,6 +2578,7 @@ class DIAMOND_DLL_SPEC Player : public Unit, public GridPlayer
                 m_DelayedOperations |= operation;
         }
 
+		void PerformIndoorCheck();
         MapReference m_mapRef;
 
         // Homebind coordinates
@@ -2594,6 +2595,7 @@ class DIAMOND_DLL_SPEC Player : public Unit, public GridPlayer
         uint8 m_MirrorTimerFlags;
         uint8 m_MirrorTimerFlagsLast;
         bool m_isInWater;
+        uint32 m_IndoorCheckTimer;
 
         // Current teleport data
         WorldLocation m_teleport_dest;

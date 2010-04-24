@@ -1,7 +1,13 @@
 #include "dbcfile.h"
-#include "mpq.h"
-#include "Stormlib.h"
-#define __STORMLIB_SELF__
+#ifdef USE_LIBMPQ04
+#include "mpq_libmpq04.h"
+#else
+#include "mpq_libmpq.h"
+#endif
+#undef min
+#undef max
+
+#include <cstdio>
 
 DBCFile::DBCFile(const std::string &filename) : filename(filename)
 {

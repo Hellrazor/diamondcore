@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug_NoPCH|Win32">
@@ -350,16 +350,12 @@
     <ClCompile Include="..\..\src\shared\Auth\HMACSHA1.cpp" />
     <ClCompile Include="..\..\src\shared\Auth\SARC4.cpp" />
     <ClCompile Include="..\..\src\shared\Auth\Sha1.cpp" />
-    <ClCompile Include="..\..\src\shared\vmap\BaseModel.cpp" />
-    <ClCompile Include="..\..\src\shared\vmap\CoordModelMapping.cpp" />
-    <ClCompile Include="..\..\src\shared\vmap\DebugCmdLogger.cpp" />
-    <ClCompile Include="..\..\src\shared\vmap\ManagedModelContainer.cpp" />
-    <ClCompile Include="..\..\src\shared\vmap\ModelContainer.cpp" />
-    <ClCompile Include="..\..\src\shared\vmap\SubModel.cpp" />
+    <ClCompile Include="..\..\src\shared\vmap\MapTree.cpp" />
+    <ClCompile Include="..\..\src\shared\vmap\ModelInstance.cpp" />
     <ClCompile Include="..\..\src\shared\vmap\TileAssembler.cpp" />
-    <ClCompile Include="..\..\src\shared\vmap\TreeNode.cpp" />
     <ClCompile Include="..\..\src\shared\vmap\VMapFactory.cpp" />
-    <ClCompile Include="..\..\src\shared\vmap\VMapManager.cpp" />
+    <ClCompile Include="..\..\src\shared\vmap\VMapManager2.cpp" />
+    <ClCompile Include="..\..\src\shared\vmap\WorldModel.cpp" />
     <ClCompile Include="..\..\src\shared\pathfinding\ChunkyTriMesh.cpp" />
     <ClCompile Include="..\..\src\shared\pathfinding\InputGeom.cpp" />
     <ClCompile Include="..\..\src\shared\pathfinding\MeshLoaderObj.cpp" />
@@ -413,23 +409,15 @@
     <ClInclude Include="..\..\src\shared\Auth\HMACSHA1.h" />
     <ClInclude Include="..\..\src\shared\Auth\SARC4.h" />
     <ClInclude Include="..\..\src\shared\Auth\Sha1.h" />
-    <ClInclude Include="..\..\src\shared\vmap\AABSPTree.h" />
-    <ClInclude Include="..\..\src\shared\vmap\BaseModel.h" />
-    <ClInclude Include="..\..\src\shared\vmap\CoordModelMapping.h" />
-    <ClInclude Include="..\..\src\shared\vmap\DebugCmdLogger.h" />
     <ClInclude Include="..\..\src\shared\vmap\IVMapManager.h" />
-    <ClInclude Include="..\..\src\shared\vmap\ManagedModelContainer.h" />
-    <ClInclude Include="..\..\src\shared\vmap\ModelContainer.h" />
-    <ClInclude Include="..\..\src\shared\vmap\NodeValueAccess.h" />
-    <ClInclude Include="..\..\src\shared\vmap\ShortBox.h" />
-    <ClInclude Include="..\..\src\shared\vmap\ShortVector.h" />
-    <ClInclude Include="..\..\src\shared\vmap\SubModel.h" />
+    <ClInclude Include="..\..\src\shared\vmap\MapTree.h" />
+    <ClInclude Include="..\..\src\shared\vmap\ModelInstance.h" />
     <ClInclude Include="..\..\src\shared\vmap\TileAssembler.h" />
-    <ClInclude Include="..\..\src\shared\vmap\TreeNode.h" />
     <ClInclude Include="..\..\src\shared\vmap\VMapDefinitions.h" />
     <ClInclude Include="..\..\src\shared\vmap\VMapFactory.h" />
-    <ClInclude Include="..\..\src\shared\vmap\VMapManager.h" />
+    <ClInclude Include="..\..\src\shared\vmap\VMapManager2.h" />
     <ClInclude Include="..\..\src\shared\vmap\VMapTools.h" />
+    <ClInclude Include="..\..\src\shared\vmap\WorldModel.h" />
     <ClInclude Include="..\..\src\shared\pathfinding\ChunkyTriMesh.h" />
     <ClInclude Include="..\..\src\shared\pathfinding\InputGeom.h" />
     <ClInclude Include="..\..\src\shared\pathfinding\MeshLoaderObj.h" />
