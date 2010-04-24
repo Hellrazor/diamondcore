@@ -538,7 +538,7 @@ void GameObject::SaveToDB(uint32 mapid, uint8 spawnMask, uint32 phaseMask)
 
     // updated in DB
     std::ostringstream ss;
-    ss << "INSERT INTO gameobject VALUES ( "
+    ss << "INSERT INTO gameobject_spawns VALUES ( "
         << m_DBTableGuid << ", "
         << GetEntry() << ", "
         << mapid << ", "
