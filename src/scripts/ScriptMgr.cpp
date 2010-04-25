@@ -11,7 +11,7 @@
 #include "../system/system.h"
 
 #define _FULLVERSION "DiamondScripts"
-#define _SCRIPTS_CONFIG  SYSCONFDIR "WorldServer.conf"
+#define _SCRIPTS_CONFIG SYSCONFDIR "WorldServer.conf"
 
 int num_sc_scripts;
 Script *m_scripts[MAX_SCRIPTS];
@@ -91,12 +91,6 @@ void ScriptsInit()
         error_log("DS: Unable to open configuration file. Database will be unaccessible. Configuration values will use default.");
     else
         outstring_log("DS: Using configuration file %s",_SCRIPTS_CONFIG);
-
-    //Check config file version
-    if (DSConfig.GetIntDefault("ConfVersion", 0) != DS_CONF_VERSION)
-        error_log("DS: Configuration file version doesn't match expected version. Some config variables may be wrong or missing.");
-
-    outstring_log("");
 
     //Load database (must be called after DSConfig.SetSource).
     LoadDatabase();

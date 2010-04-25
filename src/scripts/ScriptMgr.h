@@ -85,9 +85,7 @@ QueryResult* strDSPquery(char*);
 #endif
 
 // The path to config files
-#ifndef SYSCONFDIR
-  #define SYSCONFDIR ""
-#endif
+#define SYSCONFDIR ""
 
 #if COMPILER == COMPILER_GNU
 #define FUNC_PTR(name,callconvention,returntype,parameters)    typedef returntype(*name)parameters __attribute__ ((callconvention));
