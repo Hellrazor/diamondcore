@@ -221,6 +221,17 @@ void Script::RegisterSelf()
 //*** Functions to be Exported ***
 
 DIAMOND_DLL_EXPORT
+char const* ScriptsVersion()
+{
+    if (!strDSVersion.empty())
+    {
+        strDSVersion.append(_FULLVERSION);
+        return strDSVersion.c_str();
+    }
+    return _FULLVERSION;
+}
+
+DIAMOND_DLL_EXPORT
 bool GossipHello(Player* pPlayer, Creature* pCreature)
 {
     Script *tmpscript = m_scripts[pCreature->GetScriptId()];
