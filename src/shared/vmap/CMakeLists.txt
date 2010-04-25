@@ -3,19 +3,19 @@
 
 SET(vmaps_STAT_SRCS
    IVMapManager.h
-   MapTree.cpp \
-   MapTree.h \
-   ModelInstance.cpp \
-   ModelInstance.h \
+   MapTree.cpp
+   MapTree.h
+   ModelInstance.cpp
+   ModelInstance.h
    TileAssembler.cpp
    TileAssembler.h
    VMapDefinitions.h
    VMapFactory.cpp
    VMapFactory.h
-   VMapManager2.cpp \
-   VMapManager2.h \
-   VMapTools.h \
-   WorldModel.cpp \
+   VMapManager2.cpp
+   VMapManager2.h
+   VMapTools.h
+   WorldModel.cpp
    WorldModel.h
 )
 
