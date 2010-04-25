@@ -2722,11 +2722,6 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\src\scripts\config.h"
-			>
-		</File>
-
-		<File
 			RelativePath="..\..\src\scripts\ScriptMgr.cpp"
 			>
 		</File>

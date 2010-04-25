@@ -76,6 +76,19 @@ void DoScriptText(int32 textEntry, WorldObject* pSource, Unit* target = NULL);
 
 QueryResult* strDSPquery(char*);
 
+#ifdef WIN32
+  #define DIAMOND_DLL_EXPORT extern "C" __declspec(dllexport)
+#elif defined( __GNUC__ )
+  #define DIAMOND_DLL_EXPORT extern "C"
+#else
+  #define DIAMOND_DLL_EXPORT extern "C" export
+#endif
+
+// The path to config files
+#ifndef SYSCONFDIR
+  #define SYSCONFDIR ""
+#endif
+
 #if COMPILER == COMPILER_GNU
 #define FUNC_PTR(name,callconvention,returntype,parameters)    typedef returntype(*name)parameters __attribute__ ((callconvention));
 #else

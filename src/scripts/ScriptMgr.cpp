@@ -4,12 +4,14 @@
 
 #include "precompiled.h"
 #include "Config/Config.h"
-#include "config.h"
 #include "Database/DatabaseEnv.h"
 #include "DBCStores.h"
 #include "ObjectMgr.h"
 #include "../system/ScriptLoader.h"
 #include "../system/system.h"
+
+#define _FULLVERSION "DiamondScripts"
+#define _SCRIPTS_CONFIG  SYSCONFDIR "WorldServer.conf"
 
 int num_sc_scripts;
 Script *m_scripts[MAX_SCRIPTS];
@@ -217,18 +219,6 @@ void Script::RegisterSelf()
 
 //********************************
 //*** Functions to be Exported ***
-
-DIAMOND_DLL_EXPORT
-char const* ScriptsVersion()
-{
-    if (!strDSVersion.empty())
-    {
-        strDSVersion.append(_FULLVERSION);
-        return strDSVersion.c_str();
-    }
-
-    return _FULLVERSION;
-}
 
 DIAMOND_DLL_EXPORT
 bool GossipHello(Player* pPlayer, Creature* pCreature)

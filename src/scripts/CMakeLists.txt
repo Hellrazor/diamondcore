@@ -4,7 +4,6 @@
 SET(SCRIPT_LIB_SRCS
    ScriptMgr.cpp
    ScriptMgr.h
-   config.h
    base/escort_ai.cpp
    base/escort_ai.h
    base/follower_ai.cpp
