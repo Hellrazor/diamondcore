@@ -50,27 +50,28 @@ class DIAMOND_DLL_SPEC ViewPoint
     std::vector<Camera*> m_cameras;
     
     void AddCamera(Camera* c) { m_cameras.push_back(c); }
-    void RemoveCamera(Camera* c) { m_cameras.erase(remove(m_cameras.begin(),m_cameras.end(), c)); }
+    
+	void RemoveCamera(Camera* c) { m_cameras.erase(remove(m_cameras.begin(),m_cameras.end(), c)); }
 
-    template<typename Handler>
-    void CameraCall(Handler h)
-    {
-        if(m_cameras.size() == 1)   // the most common case
-        {
-            if( h(m_cameras.front()) == true)
-                m_cameras.clear();
-        }
-        else
-            m_cameras.erase( remove_if(m_cameras.begin(),m_cameras.end(),h), m_cameras.end() );
-        }
-    }
-
-    template<typename Handler>
-    void CameraCall(Handler h) const { std::for_each( m_cameras.begin(),m_cameras.end(),h ); }
+	template<typename Handler>
+	void CameraCall(Handler h)
+	{
+		if(m_cameras.size() == 1)   // the most common case
+		{
+			if( h(m_cameras.front()) == true)
+				m_cameras.clear();
+		}
+		else
+			m_cameras.erase( remove_if(m_cameras.begin(),m_cameras.end(),h), m_cameras.end() );
+	}
+	
+	template<typename Handler>
+	void CameraCall(Handler h) const { std::for_each( m_cameras.begin(),m_cameras.end(),h ); }
 
 public:
 
     virtual ~ViewPoint();
+
     void CameraEvent_AddedToWorld() const            { if(!m_cameras.empty()) CameraCall(Camera::Event_AddedToWorld); }
     void CameraEvent_RemovedFromWorld()              { if(!m_cameras.empty()) CameraCall(Camera::Event_RemovedFromWorld); }
     void CameraEvent_Moved() const                   { if(!m_cameras.empty()) CameraCall(Camera::Event_Moved); }

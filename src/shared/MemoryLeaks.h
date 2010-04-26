@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef MANGOSSERVER_MEMORY_H
-#define MANGOSSERVER_MEMORY_H
+#ifndef DIAMOND_MEMORY_H
+#define DIAMOND_MEMORY_H
 
 #include "Platform/CompilerDefs.h"
 

@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef MANGOSSERVER_PATH_H
-#define MANGOSSERVER_PATH_H
+#ifndef DIAMOND_PATH_H
+#define DIAMOND_PATH_H
 
 #include "Common.h"
 #include <vector>

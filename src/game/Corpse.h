@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef MANGOSSERVER_CORPSE_H
-#define MANGOSSERVER_CORPSE_H
+#ifndef DIAMOND_CORPSE_H
+#define DIAMOND_CORPSE_H
 
 #include "Object.h"
 #include "Database/DatabaseEnv.h"

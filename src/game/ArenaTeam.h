@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef MANGOSSERVER_ARENATEAM_H
-#define MANGOSSERVER_ARENATEAM_H
+#ifndef DIAMOND_ARENATEAM_H
+#define DIAMOND_ARENATEAM_H
 
 enum ArenaTeamCommandTypes
 {

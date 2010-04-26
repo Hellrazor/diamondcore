@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2005-2010 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2010 DiamondCore <http://easy-emu.de/>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -83,7 +83,7 @@ namespace VMAP
         public:
             // public for debug
             G3D::Vector3 convertPositionToInternalRep(float x, float y, float z) const;
-            G3D::Vector3 convertPositionToMangosRep(float x, float y, float z) const;
+            G3D::Vector3 convertPositionToRep(float x, float y, float z) const;
             std::string getMapFileName(unsigned int pMapId) const;
 
             VMapManager2();

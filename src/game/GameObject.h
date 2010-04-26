@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef MANGOSSERVER_GAMEOBJECT_H
-#define MANGOSSERVER_GAMEOBJECT_H
+#ifndef DIAMOND_GAMEOBJECT_H
+#define DIAMOND_GAMEOBJECT_H
 
 #include "Common.h"
 #include "SharedDefines.h"

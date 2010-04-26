@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef MANGOSSERVER_WORLDPACKET_H
-#define MANGOSSERVER_WORLDPACKET_H
+#ifndef DIAMOND_WORLDPACKET_H
+#define DIAMOND_WORLDPACKET_H
 
 #include "Common.h"
 #include "ByteBuffer.h"

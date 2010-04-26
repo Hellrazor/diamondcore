@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef MANGOSSERVER_LOG_H
-#define MANGOSSERVER_LOG_H
+#ifndef DIAMOND_LOG_H
+#define DIAMOND_LOG_H
 
 #include "Common.h"
 #include "Policies/Singleton.h"

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2005-2010 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2010 DiamondCore <http://easy-emu.de/>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ namespace VMAP
 
     //=========================================================
 
-    Vector3 VMapManager2::convertPositionToMangosRep(float x, float y, float z) const
+    Vector3 VMapManager2::convertPositionToRep(float x, float y, float z) const
     {
         float pos[3];
         double full = 64.0*533.33333333;
@@ -270,7 +270,7 @@ namespace VMAP
                 Vector3 pos2 = convertPositionToInternalRep(x2,y2,z2);
                 Vector3 resultPos;
                 result = instanceTree->second->getObjectHitPos(pos1, pos2, resultPos, pModifyDist);
-                resultPos = convertPositionToMangosRep(resultPos.x,resultPos.y,resultPos.z);
+                resultPos = convertPositionToRep(resultPos.x,resultPos.y,resultPos.z);
                 rx = resultPos.x;
                 ry = resultPos.y;
                 rz = resultPos.z;

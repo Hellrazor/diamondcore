@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef MANGOSSERVER_CREATURE_H
-#define MANGOSSERVER_CREATURE_H
+#ifndef DIAMOND_CREATURE_H
+#define DIAMOND_CREATURE_H
 
 #include "Common.h"
 #include "Unit.h"

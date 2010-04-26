@@ -361,7 +361,7 @@ class Spell
         void EffectSummonVehicle(SpellEffectIndex eff_idx);
         void EffectDamageBuilding(SpellEffectIndex eff_idx);
 
-        Spell( Unit* Caster, SpellEntry const *info, bool triggered, ObjectGuid originalCasterGUID = ObjectGuid(), Spell** triggeringContainer = NULL );
+        Spell( Unit* caster, SpellEntry const *info, bool triggered, ObjectGuid originalCasterGUID = ObjectGuid(), Spell** triggeringContainer = NULL );
         ~Spell();
 
         void prepare(SpellCastTargets const* targets, Aura* triggeredByAura = NULL);
@@ -576,6 +576,8 @@ class Spell
         {
             ObjectGuid targetGUID;
             uint64 timeDelay;
+            uint32 HitInfo;
+            uint32 damage;
             SpellMissInfo missCondition:8;
             SpellMissInfo reflectResult:8;
             uint8  effectMask:8;
@@ -606,6 +608,8 @@ class Spell
         void AddGOTarget(uint64 goGUID, SpellEffectIndex effIndex);
         void AddItemTarget(Item* target, SpellEffectIndex effIndex);
         void DoAllEffectOnTarget(TargetInfo *target);
+        void HandleDelayedSpellLaunch(TargetInfo *target);
+        void InitializeDamageMultipliers();
         void DoSpellHitOnUnit(Unit *unit, uint32 effectMask);
         void DoAllEffectOnTarget(GOTargetInfo *target);
         void DoAllEffectOnTarget(ItemTargetInfo *target);

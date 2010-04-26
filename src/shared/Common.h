@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef MANGOSSERVER_COMMON_H
-#define MANGOSSERVER_COMMON_H
+#ifndef DIAMOND_COMMON_H
+#define DIAMOND_COMMON_H
 
 // config.h needs to be included 1st
 #ifdef HAVE_CONFIG_H

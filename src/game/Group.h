@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef MANGOSSERVER_GROUP_H
-#define MANGOSSERVER_GROUP_H
+#ifndef DIAMOND_GROUP_H
+#define DIAMOND_GROUP_H
 
 #include "GroupReference.h"
 #include "GroupRefManager.h"

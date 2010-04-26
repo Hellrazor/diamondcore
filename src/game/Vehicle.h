@@ -16,8 +16,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#ifndef MANGOSSERVER_VEHICLE_H
-#define MANGOSSERVER_VEHICLE_H
+#ifndef DIAMOND_VEHICLE_H
+#define DIAMOND_VEHICLE_H
 
 #include "ObjectGuid.h"
 #include "Creature.h"
