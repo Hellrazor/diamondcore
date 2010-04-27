@@ -173,6 +173,7 @@ int ExtractWmo()
                         if(!froot->open())
                         {
                             printf("Not open RootWmo!!!\n");
+                            delete froot;
                             continue;
                         }
                         FILE *output = fopen(szLocalFile, "wb");
@@ -180,6 +181,10 @@ int ExtractWmo()
                         {
                             printf("couldn't open %s for writing!\n", szLocalFile);
                             success=false;
+
+                            // do this?
+                            // delete froot;
+                            // continue;
                         }
                         froot->ConvertToVMAPRootWmo(output);
                         int Wmo_nVertices = 0;
@@ -201,15 +206,18 @@ int ExtractWmo()
                                 {
                                     printf("Could not open all Group file for: %s (found %u/%u)\n",GetPlainName(fname->c_str()), i, froot->nGroups);
                                     file_ok=false;
+                                    delete fgroup;
                                     break;
                                 }
 
                                 Wmo_nVertices += fgroup->ConvertToVMAPGroupWmo(output, preciseVectorData);
+                                delete fgroup;
                             }
                         }
                         fseek(output, 8, SEEK_SET); // store the correct no of vertices
                         fwrite(&Wmo_nVertices,sizeof(int),1,output);
                         fclose(output);
+                        delete froot;
                     }
                 }
                 else

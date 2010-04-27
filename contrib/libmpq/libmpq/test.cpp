@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 
     if(argc <= 1 || argc > 3)
     {
-        printf("%s%s%s%s%s%s",
+        printf("%s%s%s%s%s",
             "libmpq tester\n\n",
             "Usage:\ttest.exe file.mpq [fileIndex]\n",
             "where\n",
@@ -75,7 +75,13 @@ int main(int argc, char **argv)
     }
     else
     {
-        libmpq__file_number(mpq_archive, "(listfile)", &fileIndex);
+        if(libmpq__file_number(mpq_archive, "World\\Maps\\Kalimdor\\Kalimdor_50_16.adt", &fileIndex))
+		{
+			printf("File does not exist.");
+			getchar();
+			return 0;
+		}
+
         printf("listfile Index: %u\n", fileIndex);
 
         libmpq__file_unpacked_size(mpq_archive, fileIndex, &out_size);
@@ -89,7 +95,7 @@ int main(int argc, char **argv)
             libmpq__file_read(mpq_archive, fileIndex, (uint8_t*)out_buf, out_size, &read_size);
 
             std::string filename(argv[1]);
-            filename += ".Map.dbc";
+            filename += ".listfile";
 
             FILE* out = fopen(filename.c_str(), "wb");
             fwrite(out_buf, 1, read_size, out);

@@ -10,13 +10,4 @@
 # MaNGOS generated files at Windows build
 #
 
-*.ncb
-*.suo
-*.sdf
-*.opensdf
-*.sln.cache
-*.vsp
-*.user
-*.exe
-ipch/*
-bin/*
+lib/*

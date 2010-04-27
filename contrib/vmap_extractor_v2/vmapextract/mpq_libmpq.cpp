@@ -32,7 +32,7 @@ MPQArchive::MPQArchive(const char* filename)
         }
         return;
     }
-    gOpenArchives.push_back(this);
+    gOpenArchives.push_front(this);
 }
 
 void MPQArchive::close()
@@ -57,19 +57,15 @@ MPQFile::MPQFile(const char* filename):
         libmpq__file_unpacked_size(mpq_a, filenum, &size);
 
         // HACK: in patch.mpq some files don't want to open and give 1 for filesize
-        if (size<=1) {
-            printf("warning: file %s has size %d; cannot read.\n", filename, size);
-            eof = true;
-            buffer = 0;
-            return;
-        }
+        if (size<=1)
+            continue;
+        
         buffer = new char[size];
 
         //libmpq_file_getdata
         libmpq__file_read(mpq_a, filenum, (unsigned char*)buffer, size, &transferred);
         /*libmpq_file_getdata(&mpq_a, hash, fileno, (unsigned char*)buffer);*/
         return;
-
     }
     eof = true;
     buffer = 0;
