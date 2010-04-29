@@ -232,7 +232,7 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
 	//=========================================//
 
 	//First we need get this from config =D for all races /classes
-	/*bool warrior = sConfig.GetBoolDefault("WarriorCharacter.Enable", true);
+	bool warrior = sConfig.GetBoolDefault("WarriorCharacter.Enable", true);
 	bool paladin = sConfig.GetBoolDefault("PaladinCharacter.Enable", true);
 	bool hunter = sConfig.GetBoolDefault("HunterCharacter.Enable", true);
 	bool rogue = sConfig.GetBoolDefault("RogueCharacter.Enable", true);
@@ -261,7 +261,7 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
 		data << uint8(CHAR_CREATE_DISABLED);
 		SendPacket( &data );
 		return;
-	}*/
+	}
 
     ChrClassesEntry const* classEntry = sChrClassesStore.LookupEntry(class_);
     ChrRacesEntry const* raceEntry = sChrRacesStore.LookupEntry(race_);

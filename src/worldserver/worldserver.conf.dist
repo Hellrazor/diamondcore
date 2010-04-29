@@ -188,7 +188,7 @@ SocketSelectTime = 10000
 GridCleanUpDelay = 300000
 MapUpdateInterval = 100
 ChangeWeatherInterval = 600000
-PlayerSave.Interval = 900000
+PlayerSave.Interval = 90000
 PlayerSave.Stats.MinLevel = 0
 PlayerSave.Stats.SaveOnlyOnLogout = 1
 vmap.enableLOS = 0
@@ -1474,7 +1474,7 @@ Network.KickOnBadPacket = 0
 #
 ###################################################################################################################
 
-Anticheat.Movement.Enable = 1
+Anticheat.Movement.Enable = 0
 Anticheat.Movement.AlarmCount = 5
 Anticheat.Movement.AlarmTime = 5000
 Anticheat.Movement.Kill = 0
@@ -1592,20 +1592,6 @@ AuctionHouseBot.UseBuyPriceForBuyer = 0
 #                 0 - off
 #        Default: 1 - on
 #
-#
-#    SOAP.Enable
-#        Enable soap service
-#        Default: 0 - off
-#                 1 - on
-#
-#    SOAP.IP
-#        Bound SOAP service ip address, use 0.0.0.0 to access from everywhere
-#        Default: 127.0.0.1
-#
-#    SOAP.Port
-#        SOAP port
-#        Default: 7878
-#
 ###################################################################################################################
 
 Console.Enable = 1
@@ -1615,10 +1601,6 @@ Ra.Port = 3443
 Ra.MinLevel = 3
 Ra.Secure = 1
 Ra.Stricted = 1
-
-SOAP.Enabled = 0
-SOAP.IP = 127.0.0.1
-SOAP.Port = 7878
 
 ###################################################################################################################
 # NEW CHARACTER CREATE
