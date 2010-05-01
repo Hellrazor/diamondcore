@@ -117,7 +117,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy ..\..\dep\lib\$(PlatformName)_$(ConfigurationName)\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName)"
+				CommandLine="copy ..\..\dep\lib\$(PlatformName)_$(ConfigurationName)\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf"
 			/>
 		</Configuration>
 		<Configuration
@@ -218,7 +218,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy ..\..\dep\lib\$(PlatformName)_$(ConfigurationName)\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName)"
+				CommandLine="copy ..\..\dep\lib\$(PlatformName)_$(ConfigurationName)\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf"
 			/>
 		</Configuration>
 		<Configuration
@@ -320,7 +320,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy ..\..\dep\lib\$(PlatformName)_$(ConfigurationName)\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName)"
+				CommandLine="copy ..\..\dep\lib\$(PlatformName)_$(ConfigurationName)\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf"
 			/>
 		</Configuration>
 		<Configuration
@@ -422,7 +422,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy ..\..\dep\lib\$(PlatformName)_$(ConfigurationName)\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName)"
+				CommandLine="copy ..\..\dep\lib\$(PlatformName)_$(ConfigurationName)\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf"
 			/>
 		</Configuration>
 		<Configuration
@@ -524,7 +524,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy ..\..\dep\lib\$(PlatformName)_debug\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName)"
+				CommandLine="copy ..\..\dep\lib\$(PlatformName)_debug\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf"
 			/>
 		</Configuration>
 		<Configuration
@@ -626,7 +626,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy ..\..\dep\lib\$(PlatformName)_debug\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName)"
+				CommandLine="copy ..\..\dep\lib\$(PlatformName)_debug\*.dll ..\..\bin\$(PlatformName)_$(ConfigurationName);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf"
 			/>
 		</Configuration>
 	</Configurations>

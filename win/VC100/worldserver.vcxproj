@@ -154,7 +154,7 @@
       <ImportLibrary>$(OutDir)worldserver.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\dep\lib\$(Platform)_$(Configuration)\*.dll ..\..\bin\$(Platform)_$(Configuration)</Command>
+      <Command>copy ..\..\dep\lib\$(Platform)_$(Configuration)\*.dll ..\..\bin\$(Platform)_$(Configuration);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -206,7 +206,7 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\dep\lib\$(Platform)_$(Configuration)\*.dll ..\..\bin\$(Platform)_$(Configuration)</Command>
+      <Command>copy ..\..\dep\lib\$(Platform)_$(Configuration)\*.dll ..\..\bin\$(Platform)_$(Configuration);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -259,7 +259,7 @@
       <ImportLibrary>$(OutDir)worldserver.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\dep\lib\$(Platform)_$(Configuration)\*.dll ..\..\bin\$(Platform)_$(Configuration)</Command>
+      <Command>copy ..\..\dep\lib\$(Platform)_$(Configuration)\*.dll ..\..\bin\$(Platform)_$(Configuration);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -312,7 +312,7 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\dep\lib\$(Platform)_$(Configuration)\*.dll ..\..\bin\$(Platform)_$(Configuration)</Command>
+      <Command>copy ..\..\dep\lib\$(Platform)_$(Configuration)\*.dll ..\..\bin\$(Platform)_$(Configuration);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_NoPCH|Win32'">
@@ -365,7 +365,7 @@
       <ImportLibrary>$(OutDir)worldserver.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\dep\lib\$(Platform)_debug\*.dll ..\..\bin\$(Platform)_$(Configuration)</Command>
+      <Command>copy ..\..\dep\lib\$(Platform)_debug\*.dll ..\..\bin\$(Platform)_$(Configuration);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_NoPCH|x64'">
@@ -418,7 +418,7 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\dep\lib\$(Platform)_debug\*.dll ..\..\bin\$(Platform)_$(Configuration)</Command>
+      <Command>copy ..\..\dep\lib\$(Platform)_debug\*.dll ..\..\bin\$(Platform)_$(Configuration);copy ..\..\src\worldserver\worldserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\WorldServer.conf</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

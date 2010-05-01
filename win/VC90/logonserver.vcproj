@@ -114,6 +114,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+                                CommandLine="copy ..\..\src\logonserver\logonserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\LogonServer.conf"
 			/>
 		</Configuration>
 		<Configuration
@@ -211,6 +212,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+                                CommandLine="copy ..\..\src\logonserver\logonserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\LogonServer.conf"
 			/>
 		</Configuration>
 		<Configuration
@@ -309,6 +311,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+                                CommandLine="copy ..\..\src\logonserver\logonserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\LogonServer.conf"
 			/>
 		</Configuration>
 		<Configuration
@@ -407,6 +410,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+                                CommandLine="copy ..\..\src\logonserver\logonserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\LogonServer.conf"
 			/>
 		</Configuration>
 		<Configuration
@@ -505,6 +509,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+                                CommandLine="copy ..\..\src\logonserver\logonserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\LogonServer.conf"
 			/>
 		</Configuration>
 		<Configuration
@@ -603,6 +608,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+                                CommandLine="copy ..\..\src\logonserver\logonserver.conf.dist ..\..\bin\$(PlatformName)_$(ConfigurationName)\LogonServer.conf"
 			/>
 		</Configuration>
 	</Configurations>
