@@ -203,6 +203,7 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
     recv_data >> class_;
 
     WorldPacket data(SMSG_CHAR_CREATE, 1);                  // returned with diff.values in all cases
+	WorldPacket data_login(SMSG_CHAR_CREATE, 1);                  // returned with diff.values in all cases
 
     if(GetSecurity() == SEC_PLAYER)
     {
@@ -368,12 +369,96 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
 	// Goblin
 	// Will come in Cataclysm \\
 
-	// Function for alliance
-	if (!human_priest && CLASS_PRIEST && RACE_HUMAN)
+	if(GetSecurity() == SEC_PLAYER)
 	{
 		data << (uint8)CHAR_CREATE_DISABLED;
-		SendPacket(&data);
-		return;
+		data_login << (uint8)CHAR_LOGIN_DISABLED;
+		// Function for Human
+		if (!human_priest && CLASS_PRIEST && RACE_HUMAN || !human_rogue && CLASS_ROGUE && RACE_HUMAN || !human_warrior && CLASS_WARRIOR && RACE_HUMAN
+			|| !human_mage && CLASS_MAGE && RACE_HUMAN || !human_warlock && CLASS_WARLOCK && RACE_HUMAN || !human_paladin && CLASS_PALADIN && RACE_HUMAN
+			|| !human_deathknight && CLASS_DEATH_KNIGHT && RACE_HUMAN)
+		{
+			SendPacket(&data);
+			SendPacket(&data_login);
+			return;
+		}
+		// Function for Dwarf
+		if (!dwarf_priest && CLASS_PRIEST && RACE_DWARF || !dwarf_rogue && CLASS_ROGUE && RACE_DWARF || !dwarf_warrior && CLASS_WARRIOR && RACE_DWARF
+			|| !dwarf_hunter && CLASS_HUNTER && RACE_DWARF || !dwarf_paladin && CLASS_PALADIN && RACE_DWARF || !dwarf_deathknight && CLASS_DEATH_KNIGHT && RACE_DWARF)
+		{
+			SendPacket(&data);
+			SendPacket(&data_login);
+			return;
+		}
+		// Function for Nightelf
+		if (!nightelf_priest && CLASS_PRIEST && RACE_NIGHTELF || !nightelf_rogue && CLASS_ROGUE && RACE_NIGHTELF || !nightelf_warrior && CLASS_WARRIOR && RACE_NIGHTELF
+			|| !nightelf_druid && CLASS_DRUID && RACE_NIGHTELF || !nightelf_hunter && CLASS_HUNTER && RACE_NIGHTELF
+			|| !nightelf_deathknight && CLASS_DEATH_KNIGHT && RACE_NIGHTELF)
+		{
+			SendPacket(&data);
+			SendPacket(&data_login);
+			return;
+		}
+		// Function for Gnome
+		if (!gnome_rogue && CLASS_ROGUE && RACE_GNOME || !gnome_warrior && CLASS_WARRIOR && RACE_GNOME || !gnome_mage && CLASS_MAGE && RACE_GNOME
+			|| !gnome_warlock && CLASS_WARLOCK && RACE_GNOME || !gnome_deathknight && CLASS_DEATH_KNIGHT && RACE_GNOME)
+		{
+			SendPacket(&data);
+			SendPacket(&data_login);
+			return;
+		}
+		// Function for Draenei
+		if (!draenei_priest && CLASS_PRIEST && RACE_DRAENEI|| !draenei_warrior && CLASS_WARRIOR && RACE_DRAENEI || !draenei_mage && CLASS_MAGE && RACE_DRAENEI
+			|| !draenei_hunter && CLASS_HUNTER && RACE_DRAENEI || !draenei_shaman && CLASS_SHAMAN && RACE_DRAENEI || !draenei_paladin && CLASS_PALADIN && RACE_DRAENEI
+			|| !draenei_deathknight && CLASS_DEATH_KNIGHT && RACE_DRAENEI)
+		{
+			SendPacket(&data);
+			SendPacket(&data_login);
+			return;
+		}
+
+		// Function for Orc
+		if (!orc_rogue && CLASS_ROGUE && RACE_ORC || !orc_warrior && CLASS_WARRIOR && RACE_ORC || !orc_hunter && CLASS_HUNTER && RACE_ORC
+			|| !orc_warlock && CLASS_WARLOCK && RACE_ORC || !orc_shaman && CLASS_SHAMAN && RACE_ORC || !orc_deathknight && CLASS_DEATH_KNIGHT && RACE_ORC)
+		{
+			SendPacket(&data);
+			SendPacket(&data_login);
+			return;
+		}
+		// Function for Forsaken
+		if (!forsaken_priest && CLASS_PRIEST && RACE_UNDEAD_PLAYER || !forsaken_rogue && CLASS_ROGUE && RACE_UNDEAD_PLAYER || !forsaken_mage && CLASS_MAGE && RACE_UNDEAD_PLAYER
+			|| !forsaken_warlock && CLASS_WARLOCK && RACE_UNDEAD_PLAYER || !forsaken_deathknight && CLASS_DEATH_KNIGHT && RACE_UNDEAD_PLAYER)
+		{
+			SendPacket(&data);
+			SendPacket(&data_login);
+			return;
+		}
+		// Function for Tauren
+		if (!tauren_warrior && CLASS_WARRIOR && RACE_TAUREN || !tauren_druid && CLASS_DRUID && RACE_TAUREN || !tauren_hunter && CLASS_HUNTER && RACE_TAUREN
+			|| !tauren_shaman && CLASS_SHAMAN && RACE_TAUREN || !tauren_deathknight && CLASS_DEATH_KNIGHT && RACE_TAUREN)
+		{
+			SendPacket(&data);
+			SendPacket(&data_login);
+			return;
+		}
+		// Function for Troll
+		if (!troll_priest && CLASS_PRIEST && RACE_TROLL || !troll_rogue && CLASS_ROGUE && RACE_TROLL || !troll_warrior && CLASS_WARRIOR && RACE_TROLL
+			|| !troll_mage && CLASS_MAGE && RACE_TROLL || !troll_hunter && CLASS_HUNTER && RACE_TROLL || !troll_shaman && CLASS_SHAMAN && RACE_TROLL
+			|| !troll_deathknight && CLASS_DEATH_KNIGHT && RACE_TROLL)
+		{
+			SendPacket(&data);
+			SendPacket(&data_login);
+			return;
+		}
+		// Function for BloodElf
+		if (!bloodelf_priest && CLASS_PRIEST && RACE_BLOODELF || !bloodelf_rogue && CLASS_ROGUE && RACE_BLOODELF || !bloodelf_mage && CLASS_MAGE && RACE_BLOODELF
+			|| !bloodelf_hunter && CLASS_HUNTER && RACE_BLOODELF || !bloodelf_warlock && CLASS_WARLOCK && RACE_BLOODELF || !bloodelf_paladin && CLASS_PALADIN && RACE_BLOODELF
+			|| !bloodelf_deathknight && CLASS_DEATH_KNIGHT && RACE_BLOODELF)
+		{
+			SendPacket(&data);
+			SendPacket(&data_login);
+			return;
+		}
 	}
 
     ChrClassesEntry const* classEntry = sChrClassesStore.LookupEntry(class_);
