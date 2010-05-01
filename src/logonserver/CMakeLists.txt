@@ -49,6 +49,6 @@ install(TARGETS logonserver DESTINATION bin)
 
 ########### install files ###############
 
-install(FILES  logonserver.conf.dist DESTINATION bin)
+install(FILES logonserver.conf.dist DESTINATION bin)
 
 
