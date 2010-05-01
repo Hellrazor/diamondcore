@@ -1603,40 +1603,84 @@ Ra.Secure = 1
 Ra.Stricted = 1
 
 ###################################################################################################################
-# NEW CHARACTER CREATE
-#    
-#    RaceCharacter.Enable
-#        (A: Human, Dwarf, Gnome, Night Elf, Draenei / H: Orc, Troll, Undead, Tauren, Blood Elf)
-#                 0 - disable (blocked)
-#        Default: 1 - enable  (enabled)
+# RACE / CLASS BLOCKER
 #
-#    ClassCharacter.Enable
-#        (Warrior, Paladin, Shaman, Hunter, Druid, Rogue, Priest, Mage, Warlock)
-#                 0 - disable (blocked)
-#        Default: 1 - enable  (enabled)
+#    Race.Class.Enable
+#        Allow to disable character creation for race/class combis
+#        Default: 1 - All Race/Class combis enabled
 #
 ###################################################################################################################
 
-HumanCharacter.Enable       = 1
-DwarfCharacter.Enable       = 1
-GnomeCharacter.Enable       = 1
-NightElfCharacter.Enable    = 1
-DraeneiCharacter.Enable     = 1
-OrcCharacter.Enable         = 1
-TrollCharacter.Enable       = 1
-UndeadCharacter.Enable      = 1
-TaurenCharacter.Enable      = 1
-BloodElfCharacter.Enable    = 1
+Human.Priest.Enable         = 1
+Human.Rogue.Enable          = 1
+Human.Warrior.Enable        = 1
+Human.Mage.Enable           = 1
+Human.Warlock.Enable        = 1
+Human.Paladin.Enable        = 1
+Human.DeathKnight.Enable    = 1
 
-WarriorCharacter.Enable     = 1
-PaladinCharacter.Enable     = 1
-ShamanCharacter.Enable      = 1
-HunterCharacter.Enable      = 1
-DruidCharacter.Enable       = 1
-RogueCharacter.Enable       = 1
-PriestCharacter.Enable      = 1
-MageCharacter.Enable        = 1
-WarlockCharacter.Enable     = 1
+Dwarf.Priest.Enable         = 1
+Dwarf.Rogue.Enable          = 1
+Dwarf.Warrior.Enable        = 1
+Dwarf.Hunter.Enable         = 1
+Dwarf.Paladin.Enable        = 1
+Dwarf.DeathKnight.Enable    = 1
+
+NightElf.Priest.Enable      = 1
+NightElf.Rogue.Enable       = 1
+NightElf.Warrior.Enable     = 1
+NightElf.Druid.Enable       = 1
+NightElf.Hunter.Enable      = 1
+NightElf.DeathKnight.Enable = 1
+
+Gnome.Rogue.Enable          = 1
+Gnome.Warrior.Enable        = 1
+Gnome.Mage.Enable           = 1
+Gnome.Warlock.Enable        = 1
+Gnome.DeathKnight.Enable    = 1
+
+Draenei.Priest.Enable       = 1
+Draenei.Warrior.Enable      = 1
+Draenei.Mage.Enable         = 1
+Draenei.Hunter.Enable       = 1
+Draenei.Shaman.Enable       = 1
+Draenei.Paladin.Enable      = 1
+Draenei.DeathKnight.Enable  = 1
+
+Orc.Rogue.Enable            = 1
+Orc.Warrior.Enable          = 1
+Orc.Hunter.Enable           = 1
+Orc.Warlock.Enable          = 1
+Orc.Shaman.Enable           = 1
+Orc.DeathKnight.Enable      = 1
+
+Forsaken.Priest.Enable      = 1
+Forsaken.Rogue.Enable       = 1
+Forsaken.Mage.Enable        = 1
+Forsaken.Warlock.Enable     = 1
+Forsaken.DeathKnight.Enable = 1
+
+Tauren.Warrior.Enable       = 1
+Tauren.Druid.Enable         = 1
+Tauren.Hunter.Enable        = 1
+Tauren.Shaman.Enable        = 1
+Tauren.DeathKnight.Enable   = 1
+
+Troll.Priest.Enable         = 1
+Troll.Rogue.Enable          = 1
+Troll.Warrior.Enable        = 1
+Troll.Mage.Enable           = 1
+Troll.Hunter.Enable         = 1
+Troll.Shaman.Enable         = 1
+Troll.DeathKnight.Enable    = 1
+
+BloodElf.Priest.Enable      = 1
+BloodElf.Rogue.Enable       = 1
+BloodElf.Mage.Enable        = 1
+BloodElf.Hunter.Enable      = 1
+BloodElf.Warlock.Enable     = 1
+BloodElf.Paladin.Enable     = 1
+BloodElf.DeathKnight.Enable = 1
 
 ###################################################################################################################
 #    CharDelete.Method

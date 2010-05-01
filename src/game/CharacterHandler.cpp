@@ -226,40 +226,153 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
         }
     }
 
-    //=========================================//
-	///Character Create Disable PATCH by DLxko///
-	///Modified by Fabian                     ///
-	//=========================================//
+	// Disable Race/Class combinations \\
+	 //            by Fabian          \\
 
-	//First we need get this from config =D for all races /classes
-	bool warrior = sConfig.GetBoolDefault("WarriorCharacter.Enable", true);
-	bool paladin = sConfig.GetBoolDefault("PaladinCharacter.Enable", true);
-	bool hunter = sConfig.GetBoolDefault("HunterCharacter.Enable", true);
-	bool rogue = sConfig.GetBoolDefault("RogueCharacter.Enable", true);
-	bool priest = sConfig.GetBoolDefault("PriestCharacter.Enable", true);
-	bool shaman = sConfig.GetBoolDefault("ShamanCharacter.Enable", true);
-	bool mage = sConfig.GetBoolDefault("MageCharacter.Enable", true);
-	bool warlock = sConfig.GetBoolDefault("WarlockCharacter.Enable", true);
+	//####################################ALLIANCE####################################\\
+	// Human
+	bool human_priest      = sConfig.GetBoolDefault("Human.Priest.Enable", true);
+	bool human_rogue       = sConfig.GetBoolDefault("Human.Rogue.Enable", true);
+	bool human_warrior     = sConfig.GetBoolDefault("Human.Warrior.Enable", true);
+	bool human_mage        = sConfig.GetBoolDefault("Human.Mage.Enable", true);
+	// Druid not aviable for this Race
+	/* Hunter will come in Cataclysm
+	bool human_hunter      = sConfig.GetBoolDefault("Human.Hunter.Enable", true);*/
+	bool human_warlock     = sConfig.GetBoolDefault("Human.Warlock.Enable", true);
+	// Shaman not aviable for this Race
+	bool human_paladin     = sConfig.GetBoolDefault("Human.Paladin.Enable", true);
+	bool human_deathknight = sConfig.GetBoolDefault("Human.DeathKnight.Enable", true);
 
-	bool dwarf = sConfig.GetBoolDefault("DwarfCharacter.Enable", true);
-	bool gnome = sConfig.GetBoolDefault( "GnomeCharacter.Enable", true);
-	bool human = sConfig.GetBoolDefault("HumanCharacter.Enable", true);
-	bool nightelf = sConfig.GetBoolDefault("NightElfCharacter.Enable", true);
-	bool orc = sConfig.GetBoolDefault("OrcCharacter.Enable", true);
-	bool tauren = sConfig.GetBoolDefault("TaurenCharacter.Enable", true);
-	bool troll = sConfig.GetBoolDefault("TrollCharacter.Enable", true);
-	bool undead = sConfig.GetBoolDefault("UndeadCharacter.Enable", true);
-	bool bloodelf = sConfig.GetBoolDefault("BloodElfCharacter.Enable", true);
-	bool draenei = sConfig.GetBoolDefault("DraeneiCharacter.Enable", true);
+	// Dwarf
+	bool dwarf_priest      = sConfig.GetBoolDefault("Dwarf.Priest.Enable", true);
+	bool dwarf_rogue       = sConfig.GetBoolDefault("Dwarf.Rogue.Enable", true);
+	bool dwarf_warrior     = sConfig.GetBoolDefault("Dwarf.Warrior.Enable", true);
+	/* Mage will come in Cataclysm
+	bool dwarf_mage        = sConfig.GetBoolDefault("Dwarf.Mage.Enable", true);*/
+	// Druid not aviable for this Race
+	bool dwarf_hunter      = sConfig.GetBoolDefault("Dwarf.Hunter.Enable", true);
+	// Warlock not aviable for this Race
+	/* Shaman will come in Cataclysm
+	bool dwarf_shaman      = sConfig.GetBoolDefault("Dwarf.Shaman.Enable", true);*/
+	bool dwarf_paladin     = sConfig.GetBoolDefault("Dwarf.Paladin.Enable", true);
+	bool dwarf_deathknight = sConfig.GetBoolDefault("Dwarf.DeathKnight.Enable", true);
 
-    //If disabled class return error
-    if (!warrior && class_ == CLASS_WARRIOR || !paladin && class_ == CLASS_PALADIN || !hunter && class_ == CLASS_HUNTER || !rogue && class_ == CLASS_ROGUE || !priest && class_ == CLASS_PRIEST
-		|| !shaman && class_ == CLASS_SHAMAN || !mage && class_ == CLASS_MAGE || !warlock && class_ == CLASS_WARLOCK || !dwarf && race_ == RACE_DWARF || !gnome && race_ == RACE_GNOME
-		|| !human && race_ == RACE_HUMAN || !nightelf && race_ == RACE_NIGHTELF || !orc && race_ == RACE_ORC || !tauren && race_ == RACE_TAUREN || !troll && race_ == RACE_TROLL
-		|| !undead && race_ == RACE_UNDEAD_PLAYER || !bloodelf && race_ == RACE_BLOODELF || !draenei && race_ == RACE_DRAENEI)
+	// Night elf
+	bool nightelf_priest      = sConfig.GetBoolDefault("NightElf.Priest.Enable", true);
+	bool nightelf_rogue       = sConfig.GetBoolDefault("NightElf.Rogue.Enable", true);
+	bool nightelf_warrior     = sConfig.GetBoolDefault("NightElf.Warrior.Enable", true);
+	/* Mage will come in Cataclysm
+	bool nightelf_mage        = sConfig.GetBoolDefault("NightElf.Mage.Enable", true);*/
+	bool nightelf_druid       = sConfig.GetBoolDefault("NightElf.Druid.Enable", true);
+	bool nightelf_hunter      = sConfig.GetBoolDefault("NightElf.Hunter.Enable", true);
+	// Warlock not aviable for this Race
+	// Shaman not aviable for this Race
+	// Paladin not aviable for this Race
+	bool nightelf_deathknight = sConfig.GetBoolDefault("NightElf.DeathKnight.Enable", true);
+
+	// Gnome
+	/* Priest will come in Cataclysm
+	bool gnome_priest      = sConfig.GetBoolDefault("Gnome.Priest.Enable", true);*/
+	bool gnome_rogue       = sConfig.GetBoolDefault("Gnome.Rogue.Enable", true);
+	bool gnome_warrior     = sConfig.GetBoolDefault("Gnome.Warrior.Enable", true);
+	bool gnome_mage        = sConfig.GetBoolDefault("Gnome.Mage.Enable", true);
+	// Druid not aviable for this Race
+	// Hunter not aviable for this Race
+	bool gnome_warlock     = sConfig.GetBoolDefault("Gnome.Warlock.Enable", true);
+	// Shaman not aviable for this Race
+	// Paladin not aviable for this Race
+	bool gnome_deathknight = sConfig.GetBoolDefault("Gnome.DeathKnight.Enable", true);
+
+	// Draenei
+	bool draenei_priest      = sConfig.GetBoolDefault("Draenei.Priest.Enable", true);
+	// Rogue not aviable for this Race
+	bool draenei_warrior     = sConfig.GetBoolDefault("Draenei.Warrior.Enable", true);
+	bool draenei_mage        = sConfig.GetBoolDefault("Draenei.Mage.Enable", true);
+	// Druid not aviable for this Race
+	bool draenei_hunter      = sConfig.GetBoolDefault("Draenei.Hunter.Enable", true);
+	// Warlock not aviable for this Race
+	bool draenei_shaman      = sConfig.GetBoolDefault("Draenei.Shaman.Enable", true);
+	bool draenei_paladin     = sConfig.GetBoolDefault("Draenei.Paladin.Enable", true);
+	bool draenei_deathknight = sConfig.GetBoolDefault("Draenei.DeathKnight.Enable", true);
+
+	// Worgen
+	// Will come in Cataclysm \\
+
+	//####################################HORDE####################################\\
+	// Orc
+	// Priest not aviable for this Race
+	bool orc_rogue       = sConfig.GetBoolDefault("Orc.Rogue.Enable", true);
+	bool orc_warrior     = sConfig.GetBoolDefault("Orc.Warrior.Enable", true);
+	/* Mage will come in Cataclysm
+	bool orc_mage      = sConfig.GetBoolDefault("Orc.Mage.Enable", true);*/
+	// Druid not aviable for this Race
+	bool orc_hunter      = sConfig.GetBoolDefault("Orc.Hunter.Enable", true);
+	bool orc_warlock     = sConfig.GetBoolDefault("Orc.Warlock.Enable", true);
+	bool orc_shaman       = sConfig.GetBoolDefault("Orc.Shaman.Enable", true);
+	// Paladin not aviable for this Race
+	bool orc_deathknight = sConfig.GetBoolDefault("Orc.DeathKnight.Enable", true);
+
+	// Forsaken
+	bool forsaken_priest      = sConfig.GetBoolDefault("Forsaken.Priest.Enable", true);
+	bool forsaken_rogue       = sConfig.GetBoolDefault("Forsaken.Rogue.Enable", true);
+	bool forsaken_warrior     = sConfig.GetBoolDefault("Forsaken.Warrior.Enable", true);
+	bool forsaken_mage        = sConfig.GetBoolDefault("Forsaken.Mage.Enable", true);
+	// Druid not aviable for this Race
+	/* Hunter will come in Cataclysm
+	bool forsaken_hunter      = sConfig.GetBoolDefault("Forsaken.Hunter.Enable", true);*/
+	bool forsaken_warlock     = sConfig.GetBoolDefault("Forsaken.Warlock.Enable", true);
+	// Shaman not aviable for this Race
+	// Paladin not aviable for this Race
+	bool forsaken_deathknight = sConfig.GetBoolDefault("Forsaken.DeathKnight.Enable", true);
+
+	// Tauren
+	/* Priest will come in Cataclysm
+	bool tauren_priest      = sConfig.GetBoolDefault("Tauren.Priest.Enable", true);*/
+	// Rogue not aviable for this Race
+	bool tauren_warrior     = sConfig.GetBoolDefault("Tauren.Warrior.Enable", true);
+	// Mage not aviable for this Race
+	bool tauren_druid       = sConfig.GetBoolDefault("Tauren.Druid.Enable", true);
+	bool tauren_hunter      = sConfig.GetBoolDefault("Tauren.Hunter.Enable", true);
+	// Warlock not aviable for this Race
+	bool tauren_shaman      = sConfig.GetBoolDefault("Tauren.Shaman.Enable", true);
+	/* Paladin will come in Cataclysm
+	bool tauren_paladin     = sConfig.GetBoolDefault("Tauren.Paladin.Enable", true);*/
+	bool tauren_deathknight = sConfig.GetBoolDefault("Tauren.DeathKnight.Enable", true);
+
+	// Troll
+	bool troll_priest      = sConfig.GetBoolDefault("Troll.Priest.Enable", true);
+	bool troll_rogue       = sConfig.GetBoolDefault("Troll.Rogue.Enable", true);
+	bool troll_warrior     = sConfig.GetBoolDefault("Troll.Warrior.Enable", true);
+	bool troll_mage        = sConfig.GetBoolDefault("Troll.Mage.Enable", true);
+	/* Druid will come in Cataclysm
+	bool troll_druid       = sConfig.GetBoolDefault("Troll.Druid.Enable", true);*/
+	bool troll_hunter      = sConfig.GetBoolDefault("Troll.Hunter.Enable", true);
+	// Warlock not aviable for this Race
+	bool troll_shaman      = sConfig.GetBoolDefault("Troll.Shaman.Enable", true);
+	// Paladin not aviable for this Race
+	bool troll_deathknight = sConfig.GetBoolDefault("Troll.DeathKnight.Enable", true);
+
+	// Blood elf
+	bool bloodelf_priest      = sConfig.GetBoolDefault("BloodElf.Priest.Enable", true);
+	bool bloodelf_rogue       = sConfig.GetBoolDefault("BloodElf.Rogue.Enable", true);
+	/* Warrior will come in Cataclysm
+	bool bloodelf_warrior     = sConfig.GetBoolDefault("BloodElf.Warrior.Enable", true);*/
+	bool bloodelf_mage        = sConfig.GetBoolDefault("BloodElf.Mage.Enable", true);
+	// Druid not aviable for this Race
+	bool bloodelf_hunter      = sConfig.GetBoolDefault("BloodElf.Hunter.Enable", true);
+	bool bloodelf_warlock     = sConfig.GetBoolDefault("BloodElf.Warlock.Enable", true);
+	// Shaman not aviable for this Race
+	bool bloodelf_paladin     = sConfig.GetBoolDefault("BloodElf.Paladin.Enable", true);
+	bool bloodelf_deathknight = sConfig.GetBoolDefault("BloodElf.DeathKnight.Enable", true);
+
+	// Goblin
+	// Will come in Cataclysm \\
+
+	// Function for alliance
+	if (!human_priest && CLASS_PRIEST && RACE_HUMAN)
 	{
-		data << uint8(CHAR_CREATE_DISABLED);
-		SendPacket( &data );
+		data << (uint8)CHAR_CREATE_DISABLED;
+		SendPacket(&data);
 		return;
 	}
 
