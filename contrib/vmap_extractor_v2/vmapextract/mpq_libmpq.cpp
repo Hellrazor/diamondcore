@@ -56,9 +56,12 @@ MPQFile::MPQFile(const char* filename):
         libmpq__off_t transferred;
         libmpq__file_unpacked_size(mpq_a, filenum, &size);
 
-        // HACK: in patch.mpq some files don't want to open and give 1 for filesize
-        if (size<=1)
-            continue;
+        // file should not be loaded
+        if (size<=1) {
+            eof = true;
+            buffer = 0;
+            return;
+        }
         
         buffer = new char[size];
 

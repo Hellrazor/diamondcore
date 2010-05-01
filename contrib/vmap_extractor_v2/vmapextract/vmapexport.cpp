@@ -40,11 +40,7 @@
 #include "wdtfile.h"
 #include "dbcfile.h"
 #include "wmo.h"
-#ifdef USE_LIBMPQ04
 #include "mpq_libmpq04.h"
-#else
-#include "mpq_libmpq.h"
-#endif
 
 //------------------------------------------------------------------------------
 // Defines
@@ -168,12 +164,12 @@ int ExtractWmo()
                     }
                     if(p != 3)
                     {
-                        //printf("RootWmo!\n");
+                        std::cout << "Extracting " << *fname << std::endl;
                         WMORoot * froot = new WMORoot(*fname);
                         if(!froot->open())
                         {
-                            printf("Not open RootWmo!!!\n");
-                            delete froot;
+                            printf("Couldn't open RootWmo!!!\n");
+							delete froot;
                             continue;
                         }
                         FILE *output = fopen(szLocalFile, "wb");
@@ -199,7 +195,6 @@ int ExtractWmo()
                                 char groupFileName[1024];
                                 sprintf(groupFileName,"%s_%03d.wmo",temp, i);
                                 //printf("Trying to open groupfile %s\n",groupFileName);
-                                //printf("GroupWmo!\n");
                                 string s = groupFileName;
                                 WMOGroup * fgroup = new WMOGroup(s);
                                 if(!fgroup->open())
@@ -250,23 +245,41 @@ void ParsMapFiles()
     {
         sprintf(id,"%03u",map_ids[i].id);
         sprintf(fn,"World\\Maps\\%s\\%s.wdt", map_ids[i].name, map_ids[i].name);
-        printf("Parsing map %s, %s (%i/%i)\n", id, fn, i+1, map_count);
         WDTFile WDT(fn,map_ids[i].name);
+		printf("Parsing map %s (%s)\n", id, map_ids[i].name);
         if(WDT.init(id, map_ids[i].id))
         {
-            for (int x=0; x<64; ++x)
+            int adtCount, wdtModelCount, adtModelCount;
+			adtCount = adtModelCount = 0;
+			wdtModelCount = WDT.gnWMO;
             {
-                for (int y=0; y<64; ++y)
+                for (int x=0; x<64; ++x)
                 {
-                    if (ADTFile*ADT = WDT.GetMap(x,y))
+                    for (int y=0; y<64; ++y)
                     {
-                        //sprintf(id_filename,"%02u %02u %03u",x,y,map_ids[i].id);//!!!!!!!!!
-                        ADT->init(map_ids[i].id, x, y);
-                        delete ADT;
+                        if (ADTFile*ADT = WDT.GetMap(x,y))
+						{
+							if(ADT->init(map_ids[i].id, x, y))
+							{
+								adtCount++;
+								adtModelCount += ADT->nMDX + ADT->nWMO;
+							}
+							delete ADT;
+						}
                     }
                 }
             }
+			if(!wdtModelCount)
+				printf("No models in WDT\n");
+			if(!adtCount)
+				printf("No ADTs\n");
+			else if(!adtModelCount)
+				printf("No models in ADT\n", id);
         }
+		else
+			printf("Skipping map %s (%s) - wdt is empty\n", id, map_ids[i].name);
+		
+		printf("\n");
     }
 }
 

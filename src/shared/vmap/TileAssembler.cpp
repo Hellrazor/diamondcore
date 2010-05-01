@@ -83,6 +83,8 @@ namespace VMAP
         for (MapData::iterator map_iter = mapData.begin(); map_iter != mapData.end() && success; ++map_iter)
         {
             // build global map tree
+            printf("Building map %u\n", map_iter->first);
+
             std::vector<ModelSpawn*> mapSpawns;
             UniqueEntryMap::iterator entry;
             for (entry = map_iter->second->UniqueEntries.begin(); entry != map_iter->second->UniqueEntries.end(); ++entry)
@@ -111,7 +113,7 @@ namespace VMAP
             for(uint32 i=0; i<mapSpawns.size(); ++i)
                 modelNodeIdx.insert(std::pair<uint32, uint32>(mapSpawns[i]->ID, i));
             if(!modelNodeIdx.empty())
-                printf("min GUID: %u, max GUID: %u\n", modelNodeIdx.begin()->first, modelNodeIdx.rbegin()->first);
+                /*printf("min GUID: %u, max GUID: %u\n", modelNodeIdx.begin()->first, modelNodeIdx.rbegin()->first)*/;
 
             // write map tree file
             std::stringstream mapfilename;
@@ -125,6 +127,7 @@ namespace VMAP
             }
 
             //general info
+            printf("writing vmtree\n");
             uint32 globalTileID = StaticMapTree::packTileID(65, 65);
             std::pair<TileMap::iterator, TileMap::iterator> globalRange = map_iter->second->TileEntries.equal_range(globalTileID);
             char isTiled = globalRange.first == globalRange.second; // only maps without terrain (tiles) have global WMO
@@ -145,6 +148,7 @@ namespace VMAP
             // <====
 
             // write map tile files, similar to ADT files, only with extra BSP tree node info
+            printf("writing vmtiles\n");
             TileMap::iterator tile;
             for (tile = map_iter->second->TileEntries.begin(); tile != map_iter->second->TileEntries.end(); ++tile)
             {

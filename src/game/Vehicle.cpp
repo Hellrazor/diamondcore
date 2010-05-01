@@ -703,7 +703,7 @@ void Vehicle::InstallAllAccessories()
     switch(GetEntry())
     {
         //case 27850:InstallAccessory(27905,1);break;
-        case 28782:InstallAccessory(28768,7,true);break; // Acherus Deathcharger 
+        case 28782:InstallAccessory(28768,1,true);break; // Acherus Deathcharger
         case 28312:InstallAccessory(28319,7,true);break;
         case 32627:InstallAccessory(32629,7,true);break;
         case 32930:
@@ -771,6 +771,6 @@ void Vehicle::Die()
     for (SeatMap::iterator itr = m_Seats.begin(); itr != m_Seats.end(); ++itr)
         if(Unit *passenger = itr->second.passenger)
             if(((Creature*)passenger)->isVehicle())
-				((Vehicle*)passenger)->Dismiss();
+                ((Vehicle*)passenger)->Dismiss();
     RemoveAllPassengers();
 }

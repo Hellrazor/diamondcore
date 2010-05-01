@@ -183,8 +183,9 @@ class SpellCastTargets
 
         void Update(Unit* caster);
 
-        float m_srcX, m_srcY, m_srcZ;
+        float m_srcX, m_srcY, m_srcZ, m_srcO;
         float m_destX, m_destY, m_destZ;
+        float m_elevation, m_speed;
         std::string m_strTarget;
 
         uint32 m_targetMask;
@@ -375,6 +376,8 @@ class Spell
 
         SpellCastResult CheckCast(bool strict);
         SpellCastResult CheckPetCast(Unit* target);
+        bool IsValidSingleTargetEffect(Unit const* target, Targets type) const;
+        bool IsValidSingleTargetSpell(Unit const* target) const;
 
         // handlers
         void handle_immediate();

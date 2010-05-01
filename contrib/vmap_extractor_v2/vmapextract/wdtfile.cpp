@@ -13,7 +13,7 @@ char * wdtGetPlainName(char * FileName)
     return FileName;
 }
 
-WDTFile::WDTFile(char* file_name, char* file_name1):WDT(file_name)
+WDTFile::WDTFile(char* file_name, char* file_name1) : WDT(file_name), gnWMO(0)
 {
     filename.append(file_name1,strlen(file_name1));
 }

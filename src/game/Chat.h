@@ -171,6 +171,8 @@ class ChatHandler
         bool HandleDebugSendSetPhaseShiftCommand(const char * args);
         bool HandleDebugSendSpellFailCommand(const char* args);
 
+        bool HandleDebugVMAPCommand(const char* args);
+
         bool HandleEventListCommand(const char* args);
         bool HandleEventStartCommand(const char* args);
         bool HandleEventStopCommand(const char* args);

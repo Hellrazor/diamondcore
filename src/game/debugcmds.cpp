@@ -1019,3 +1019,25 @@ bool ChatHandler::HandleDebugUpdateCommand(const char* args)
 
     return true;
 }
+
+bool ChatHandler::HandleDebugVMAPCommand(const char* args)
+{
+    float x, y, z;
+    m_session->GetPlayer()->GetPosition(x, y, z);
+
+    Map* playerMap = m_session->GetPlayer()->GetMap();
+    char* outdoorString;
+    if(playerMap->IsOutdoors(x, y, z))
+        outdoorString = "outdoors";
+    else
+        outdoorString = "indoors";
+
+    uint32 flags;
+    int32 adtId, rootId, groupId;
+    playerMap->GetAreaInfo(x, y, z, flags, adtId, rootId, groupId);
+
+    PSendSysMessage("You are %s", outdoorString);
+    PSendSysMessage("AreaInfo flags 0x%08X", flags);
+
+    return true;
+}
