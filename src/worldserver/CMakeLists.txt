@@ -62,5 +62,5 @@ install(TARGETS WorldServer DESTINATION bin)
 
 ########### install files ###############
 
-install(FILES  worldserver.conf.dist DESTINATION etc)
+install(FILES  worldserver.conf.dist DESTINATION bin)
 
