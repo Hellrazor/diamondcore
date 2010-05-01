@@ -371,23 +371,22 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
 
 	if(GetSecurity() == SEC_PLAYER)
 	{
-		data << (uint8)CHAR_CREATE_DISABLED;
-		data_login << (uint8)CHAR_LOGIN_DISABLED;
+		
 		// Function for Human
 		if (!human_priest && CLASS_PRIEST && RACE_HUMAN || !human_rogue && CLASS_ROGUE && RACE_HUMAN || !human_warrior && CLASS_WARRIOR && RACE_HUMAN
 			|| !human_mage && CLASS_MAGE && RACE_HUMAN || !human_warlock && CLASS_WARLOCK && RACE_HUMAN || !human_paladin && CLASS_PALADIN && RACE_HUMAN
 			|| !human_deathknight && CLASS_DEATH_KNIGHT && RACE_HUMAN)
 		{
+			data << uint8(CHAR_CREATE_DISABLED);
 			SendPacket(&data);
-			SendPacket(&data_login);
 			return;
 		}
 		// Function for Dwarf
 		if (!dwarf_priest && CLASS_PRIEST && RACE_DWARF || !dwarf_rogue && CLASS_ROGUE && RACE_DWARF || !dwarf_warrior && CLASS_WARRIOR && RACE_DWARF
 			|| !dwarf_hunter && CLASS_HUNTER && RACE_DWARF || !dwarf_paladin && CLASS_PALADIN && RACE_DWARF || !dwarf_deathknight && CLASS_DEATH_KNIGHT && RACE_DWARF)
 		{
+			data << uint8(CHAR_CREATE_DISABLED);
 			SendPacket(&data);
-			SendPacket(&data_login);
 			return;
 		}
 		// Function for Nightelf
@@ -395,16 +394,16 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
 			|| !nightelf_druid && CLASS_DRUID && RACE_NIGHTELF || !nightelf_hunter && CLASS_HUNTER && RACE_NIGHTELF
 			|| !nightelf_deathknight && CLASS_DEATH_KNIGHT && RACE_NIGHTELF)
 		{
+			data << uint8(CHAR_CREATE_DISABLED);
 			SendPacket(&data);
-			SendPacket(&data_login);
 			return;
 		}
 		// Function for Gnome
 		if (!gnome_rogue && CLASS_ROGUE && RACE_GNOME || !gnome_warrior && CLASS_WARRIOR && RACE_GNOME || !gnome_mage && CLASS_MAGE && RACE_GNOME
 			|| !gnome_warlock && CLASS_WARLOCK && RACE_GNOME || !gnome_deathknight && CLASS_DEATH_KNIGHT && RACE_GNOME)
 		{
+			data << uint8(CHAR_CREATE_DISABLED);
 			SendPacket(&data);
-			SendPacket(&data_login);
 			return;
 		}
 		// Function for Draenei
@@ -412,8 +411,8 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
 			|| !draenei_hunter && CLASS_HUNTER && RACE_DRAENEI || !draenei_shaman && CLASS_SHAMAN && RACE_DRAENEI || !draenei_paladin && CLASS_PALADIN && RACE_DRAENEI
 			|| !draenei_deathknight && CLASS_DEATH_KNIGHT && RACE_DRAENEI)
 		{
+			data << uint8(CHAR_CREATE_DISABLED);
 			SendPacket(&data);
-			SendPacket(&data_login);
 			return;
 		}
 
@@ -421,24 +420,24 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
 		if (!orc_rogue && CLASS_ROGUE && RACE_ORC || !orc_warrior && CLASS_WARRIOR && RACE_ORC || !orc_hunter && CLASS_HUNTER && RACE_ORC
 			|| !orc_warlock && CLASS_WARLOCK && RACE_ORC || !orc_shaman && CLASS_SHAMAN && RACE_ORC || !orc_deathknight && CLASS_DEATH_KNIGHT && RACE_ORC)
 		{
+			data << uint8(CHAR_CREATE_DISABLED);
 			SendPacket(&data);
-			SendPacket(&data_login);
 			return;
 		}
 		// Function for Forsaken
 		if (!forsaken_priest && CLASS_PRIEST && RACE_UNDEAD_PLAYER || !forsaken_rogue && CLASS_ROGUE && RACE_UNDEAD_PLAYER || !forsaken_mage && CLASS_MAGE && RACE_UNDEAD_PLAYER
 			|| !forsaken_warlock && CLASS_WARLOCK && RACE_UNDEAD_PLAYER || !forsaken_deathknight && CLASS_DEATH_KNIGHT && RACE_UNDEAD_PLAYER)
 		{
+			data << uint8(CHAR_CREATE_DISABLED);
 			SendPacket(&data);
-			SendPacket(&data_login);
 			return;
 		}
 		// Function for Tauren
 		if (!tauren_warrior && CLASS_WARRIOR && RACE_TAUREN || !tauren_druid && CLASS_DRUID && RACE_TAUREN || !tauren_hunter && CLASS_HUNTER && RACE_TAUREN
 			|| !tauren_shaman && CLASS_SHAMAN && RACE_TAUREN || !tauren_deathknight && CLASS_DEATH_KNIGHT && RACE_TAUREN)
 		{
+			data << uint8(CHAR_CREATE_DISABLED);
 			SendPacket(&data);
-			SendPacket(&data_login);
 			return;
 		}
 		// Function for Troll
@@ -446,8 +445,8 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
 			|| !troll_mage && CLASS_MAGE && RACE_TROLL || !troll_hunter && CLASS_HUNTER && RACE_TROLL || !troll_shaman && CLASS_SHAMAN && RACE_TROLL
 			|| !troll_deathknight && CLASS_DEATH_KNIGHT && RACE_TROLL)
 		{
+			data << uint8(CHAR_CREATE_DISABLED);
 			SendPacket(&data);
-			SendPacket(&data_login);
 			return;
 		}
 		// Function for BloodElf
@@ -455,8 +454,8 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
 			|| !bloodelf_hunter && CLASS_HUNTER && RACE_BLOODELF || !bloodelf_warlock && CLASS_WARLOCK && RACE_BLOODELF || !bloodelf_paladin && CLASS_PALADIN && RACE_BLOODELF
 			|| !bloodelf_deathknight && CLASS_DEATH_KNIGHT && RACE_BLOODELF)
 		{
+			data << uint8(CHAR_CREATE_DISABLED);
 			SendPacket(&data);
-			SendPacket(&data_login);
 			return;
 		}
 	}

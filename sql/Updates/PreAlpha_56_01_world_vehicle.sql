@@ -380,8 +380,8 @@ REPLACE INTO vehicle_seat_data VALUES
 /* Some quests
 Argent tournament*/
 UPDATE creature_template SET speed_run = '1.5', unit_flags = 8 WHERE entry IN (33844,33845);
-DELETE FROM creature_addon WHERE guid IN (SELECT guid FROM creature WHERE id IN (33844,33845));
-DELETE FROM creature WHERE id IN (33844,33845);
+DELETE FROM creature_addon WHERE guid IN (SELECT guid FROM creature_spawns WHERE id IN (33844,33845));
+DELETE FROM creature_spawns WHERE id IN (33844,33845);
 DELETE FROM vehicle_data WHERE entry in (349);
 REPLACE INTO `vehicle_data` VALUES ('349', '24', '62544', '62575', '62960', '62552', '64077', '62863', '0', '0', '0', '0', '62853');
 DELETE FROM vehicle_seat_data WHERE seat in (3129);
@@ -398,7 +398,7 @@ REPLACE INTO creature_template_addon (`entry`, `mount`, `bytes1`, `bytes2`, `emo
 
 /*Quest Into the Realm of Shadows (12687)*/
 UPDATE creature_template SET faction_A = 2082, faction_H = 2082, unit_flags = 0 WHERE entry = 28782;
-DELETE FROM creature_addon WHERE guid IN (SELECT guid FROM creature WHERE id = 28782);
+DELETE FROM creature_addon WHERE guid IN (SELECT guid FROM creature_spawns WHERE id = 28782);
 DELETE FROM vehicle_data WHERE entry in (135);
 REPLACE INTO vehicle_data VALUES (135, 12, 52362, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 DELETE FROM vehicle_seat_data WHERE seat in (1871);
@@ -409,7 +409,7 @@ DELETE FROM creature_template_addon WHERE entry IN (28782);
 REPLACE INTO creature_template_addon (`entry`, `mount`, `bytes1`, `bytes2`, `emote`, `moveflags`, `vehicle_id`, `passengers`, `auras`) VALUES (28782, 0, 0, 1, 0, 0, 135, '', '');
 
 /*Quest Grand Theft Palomino (12680)*/
-DELETE FROM creature_addon WHERE guid IN (SELECT guid FROM creature WHERE id IN (28605,28606,28607));
+DELETE FROM creature_addon WHERE guid IN (SELECT guid FROM creature_spawns WHERE id IN (28605,28606,28607));
 REPLACE INTO spell_script_target VALUES (52264,1,28653);
 DELETE FROM vehicle_data WHERE entry in (123);
 REPLACE INTO vehicle_data VALUES (123, 12, 52264, 52268, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -443,7 +443,7 @@ DELETE FROM vehicle_data WHERE entry in (312);
 UPDATE `creature_template` SET `minhealth` = 26140, `maxhealth` = 26140, `dynamicflags` = 0, `minmana` = 2117, `maxmana` = 2117, `unit_flags` = 772, `minlevel` = 55, `maxlevel` = 55, `unk16` = 10, `unk17` = 1, `InhabitType` = 3, `scale` = 1, `mindmg` = 685, `maxdmg` = 715, `armor` = 3232, `attackpower` = 214, `unit_class` = 2, `type` = 10  WHERE `entry` = 28833;
 UPDATE `creature_template` SET `minhealth` = 26140, `maxhealth` = 26140, `dynamicflags` = 0, `minmana` = 0, `maxmana` = 0, `unit_flags` = 772, `minlevel` = 55, `maxlevel` = 55, `unk16` = 10, `unk17` = 1, `InhabitType` = 3, `scale` = 1, `mindmg` = 685, `maxdmg` = 715, `armor` = 3232, `attackpower` = 214, `unit_class` = 2, `type` = 10  WHERE `entry` = 28887;
 
-DELETE FROM creature_addon WHERE guid IN (SELECT guid FROM creature WHERE id IN (28887,28833));
+DELETE FROM creature_addon WHERE guid IN (SELECT guid FROM creature_spawns WHERE id IN (28887,28833));
 DELETE FROM vehicle_data WHERE entry in (68);
 REPLACE INTO `vehicle_data` VALUES ('68', '24', '52435', '52576', '52588', '0', '0', '0', '0', '0', '0', '0', '0');
 DELETE FROM vehicle_seat_data WHERE seat in (1301);
@@ -500,7 +500,7 @@ REPLACE INTO vehicle_data VALUES (336, 4, 62345, 62522, 62346, 0, 0, 0, 0, 0, 0,
 REPLACE INTO vehicle_seat_data VALUES (3006, 1),(3010, 1),(4026, 8),(4027, 8),(3009, 8);
 UPDATE `creature_template` SET `minhealth` = 1134000, `maxhealth` = 1134000 WHERE `entry` = 33067;
 UPDATE `creature_template` SET `unit_flags` = 16384 WHERE `entry` = 33067;
-DELETE FROM `creature` WHERE `id`= 33067;
+DELETE FROM creature_spawns WHERE `id`= 33067;
  
 /* Gunner Salvaged Demolisher */
 DELETE FROM npc_spellclick_spells WHERE npc_entry IN (33167);
@@ -512,10 +512,10 @@ REPLACE INTO vehicle_seat_data VALUES (3077, 1),(3106, 8);
 REPLACE INTO vehicle_seat_data VALUES (3011, 1),(3146, 8),(3013, 8),(3147, 8);
 UPDATE `creature_template` SET `unit_flags` = 16384 WHERE `entry` = 33167;
 UPDATE `creature_template` SET `minhealth` = 630000, `maxhealth` = 630000 WHERE `entry` = 33167;
-DELETE FROM `creature` WHERE `id`=33167;
+DELETE FROM creature_spawns WHERE `id`=33167;
 
 /* Massacre At Light's Point */
-DELETE FROM creature_addon WHERE guid IN (SELECT guid FROM creature WHERE id IN (28887, 28833, 28864));
+DELETE FROM creature_addon WHERE guid IN (SELECT guid FROM creature_spawns WHERE id IN (28887, 28833, 28864));
 DELETE FROM vehicle_data WHERE entry IN (25, 79);
 REPLACE INTO vehicle_data VALUES (25, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),(79, 5, 52435, 52576, 52588, 0, 0, 0, 0, 0, 0, 0, 0);
 DELETE FROM vehicle_seat_data WHERE seat IN (1427, 341);
