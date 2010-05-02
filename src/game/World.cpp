@@ -2136,7 +2136,7 @@ void World::UpdateMaxSessionCounters()
 
 void World::LoadDBVersion()
 {
-    QueryResult* result = WorldDatabase.Query("SELECT script_version, db_version, cache_id FROM version LIMIT 1");
+    QueryResult* result = WorldDatabase.Query("SELECT script_version, db_version FROM version LIMIT 1");
     if(result)
     {
         Field* fields = result->Fetch();
@@ -2144,8 +2144,6 @@ void World::LoadDBVersion()
         m_DBVersion              = fields[1].GetCppString();
         m_CreatureEventAIVersion = fields[2].GetCppString();
 
-        // will be overwrite by config values if different and non-0
-        setConfig(CONFIG_UINT32_CLIENTCACHE_VERSION, fields[2].GetUInt32());
         delete result;
     }
 
