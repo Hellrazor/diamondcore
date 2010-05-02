@@ -1,7 +1,6 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vmapExtractor3", "vmapExtractor3\vmapExtractor3.vcproj", "{D4624B20-AC1E-4EE9-8C9C-0FB65EEE3393}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vmapExtractor3", "VC90\vmapExtractor3.vcproj", "{D4624B20-AC1E-4EE9-8C9C-0FB65EEE3393}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

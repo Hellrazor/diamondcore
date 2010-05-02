@@ -40,6 +40,10 @@
 #pragma pack(push,1)
 #endif
 
+#ifdef _MSC_VER
+#pragma pack(push,1)
+#endif
+
 /* compression structure. */
 typedef struct {
 	uint32_t	offs0000;		/* 0000 - start. */
