@@ -2136,12 +2136,12 @@ void World::UpdateMaxSessionCounters()
 
 void World::LoadDBVersion()
 {
-    QueryResult* result = WorldDatabase.Query("SELECT core_version, script_version, db_version, cache_id FROM version LIMIT 1");
+    QueryResult* result = WorldDatabase.Query("SELECT script_version, db_version, cache_id FROM version LIMIT 1");
     if(result)
     {
         Field* fields = result->Fetch();
 
-        m_DBVersion              = fields[3].GetCppString();
+        m_DBVersion              = fields[1].GetCppString();
         m_CreatureEventAIVersion = fields[2].GetCppString();
 
         // will be overwrite by config values if different and non-0
