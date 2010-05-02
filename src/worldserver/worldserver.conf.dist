@@ -1605,11 +1605,17 @@ Ra.Stricted = 1
 ###################################################################################################################
 # RACE / CLASS BLOCKER
 #
+#    Race.Class.Blocker.GMLevel
+#        Enable the race/class blocker for accounts with this gm level
+#        Default: 0 - Only for normal players
+#
 #    Race.Class.Enable
 #        Allow to disable character creation for race/class combis
 #        Default: 1 - All Race/Class combis enabled
 #
 ###################################################################################################################
+
+Race.Class.Blocker.GMLevel  = 0
 
 Human.Priest.Enable         = 1
 Human.Rogue.Enable          = 1

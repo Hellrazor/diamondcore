@@ -230,6 +230,10 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
 	// Disable Race/Class combinations \\
 	 //            by Fabian          \\
 
+	// Enable Race/Class Blocker for GameMaster/Admins ?!
+	// Default is 0 (Race/Class Blocker only enabled for normal players)
+	uint8 block_gmlevel = sConfig.GetIntDefault("Race.Class.Blocker.GMLevel", 0);
+
 	//####################################ALLIANCE####################################\\
 	// Human
 	bool human_priest      = sConfig.GetBoolDefault("Human.Priest.Enable", true);
@@ -369,92 +373,92 @@ void WorldSession::HandleCharCreateOpcode( WorldPacket & recv_data )
 	// Goblin
 	// Will come in Cataclysm \\
 
-	if(GetSecurity() == SEC_PLAYER)
+	if(GetSecurity() <= block_gmlevel)
 	{
 		
 		// Function for Human
-		if (!human_priest && CLASS_PRIEST && RACE_HUMAN || !human_rogue && CLASS_ROGUE && RACE_HUMAN || !human_warrior && CLASS_WARRIOR && RACE_HUMAN
-			|| !human_mage && CLASS_MAGE && RACE_HUMAN || !human_warlock && CLASS_WARLOCK && RACE_HUMAN || !human_paladin && CLASS_PALADIN && RACE_HUMAN
-			|| !human_deathknight && CLASS_DEATH_KNIGHT && RACE_HUMAN)
+		if (!human_priest && class_ == CLASS_PRIEST && race_ == RACE_HUMAN || !human_rogue && class_ == CLASS_ROGUE && race_ == RACE_HUMAN || !human_warrior && class_ == CLASS_WARRIOR && race_ == RACE_HUMAN
+			|| !human_mage && class_ == CLASS_MAGE && race_ == RACE_HUMAN || !human_warlock && class_ == CLASS_WARLOCK && race_ == RACE_HUMAN || !human_paladin && class_ == CLASS_PALADIN && race_ == RACE_HUMAN
+			|| !human_deathknight && class_ == CLASS_DEATH_KNIGHT && race_ == RACE_HUMAN)
 		{
-			data << uint8(CHAR_CREATE_DISABLED);
+			data << uint8(CHAR_LOGIN_DISABLED);
 			SendPacket(&data);
 			return;
 		}
 		// Function for Dwarf
-		if (!dwarf_priest && CLASS_PRIEST && RACE_DWARF || !dwarf_rogue && CLASS_ROGUE && RACE_DWARF || !dwarf_warrior && CLASS_WARRIOR && RACE_DWARF
-			|| !dwarf_hunter && CLASS_HUNTER && RACE_DWARF || !dwarf_paladin && CLASS_PALADIN && RACE_DWARF || !dwarf_deathknight && CLASS_DEATH_KNIGHT && RACE_DWARF)
+		else if (!dwarf_priest && class_ == CLASS_PRIEST && race_ == RACE_DWARF || !dwarf_rogue && class_ == CLASS_ROGUE && race_ == RACE_DWARF || !dwarf_warrior && class_ == CLASS_WARRIOR && race_ == RACE_DWARF
+			|| !dwarf_hunter && class_ == CLASS_HUNTER && race_ == RACE_DWARF || !dwarf_paladin && class_ == CLASS_PALADIN && race_ == RACE_DWARF || !dwarf_deathknight && class_ == CLASS_DEATH_KNIGHT && race_ == RACE_DWARF)
 		{
-			data << uint8(CHAR_CREATE_DISABLED);
+			data << uint8(CHAR_LOGIN_DISABLED);
 			SendPacket(&data);
 			return;
 		}
 		// Function for Nightelf
-		if (!nightelf_priest && CLASS_PRIEST && RACE_NIGHTELF || !nightelf_rogue && CLASS_ROGUE && RACE_NIGHTELF || !nightelf_warrior && CLASS_WARRIOR && RACE_NIGHTELF
-			|| !nightelf_druid && CLASS_DRUID && RACE_NIGHTELF || !nightelf_hunter && CLASS_HUNTER && RACE_NIGHTELF
-			|| !nightelf_deathknight && CLASS_DEATH_KNIGHT && RACE_NIGHTELF)
+		else if (!nightelf_priest && class_ == CLASS_PRIEST && race_ == RACE_NIGHTELF || !nightelf_rogue && class_ == CLASS_ROGUE && race_ == RACE_NIGHTELF || !nightelf_warrior && class_ == CLASS_WARRIOR && race_ == RACE_NIGHTELF
+			|| !nightelf_druid && class_ == CLASS_DRUID && race_ == RACE_NIGHTELF || !nightelf_hunter && class_ == CLASS_HUNTER && race_ == RACE_NIGHTELF
+			|| !nightelf_deathknight && class_ == CLASS_DEATH_KNIGHT && race_ == RACE_NIGHTELF)
 		{
-			data << uint8(CHAR_CREATE_DISABLED);
+			data << uint8(CHAR_LOGIN_DISABLED);
 			SendPacket(&data);
 			return;
 		}
 		// Function for Gnome
-		if (!gnome_rogue && CLASS_ROGUE && RACE_GNOME || !gnome_warrior && CLASS_WARRIOR && RACE_GNOME || !gnome_mage && CLASS_MAGE && RACE_GNOME
-			|| !gnome_warlock && CLASS_WARLOCK && RACE_GNOME || !gnome_deathknight && CLASS_DEATH_KNIGHT && RACE_GNOME)
+		else if (!gnome_rogue && class_ == CLASS_ROGUE && race_ == RACE_GNOME || !gnome_warrior && class_ == CLASS_WARRIOR && race_ == RACE_GNOME || !gnome_mage && class_ == CLASS_MAGE && race_ == RACE_GNOME
+			|| !gnome_warlock && class_ == CLASS_WARLOCK && race_ == RACE_GNOME || !gnome_deathknight && class_ == CLASS_DEATH_KNIGHT && race_ == RACE_GNOME)
 		{
-			data << uint8(CHAR_CREATE_DISABLED);
+			data << uint8(CHAR_LOGIN_DISABLED);
 			SendPacket(&data);
 			return;
 		}
 		// Function for Draenei
-		if (!draenei_priest && CLASS_PRIEST && RACE_DRAENEI|| !draenei_warrior && CLASS_WARRIOR && RACE_DRAENEI || !draenei_mage && CLASS_MAGE && RACE_DRAENEI
-			|| !draenei_hunter && CLASS_HUNTER && RACE_DRAENEI || !draenei_shaman && CLASS_SHAMAN && RACE_DRAENEI || !draenei_paladin && CLASS_PALADIN && RACE_DRAENEI
-			|| !draenei_deathknight && CLASS_DEATH_KNIGHT && RACE_DRAENEI)
+		else if (!draenei_priest && class_ == CLASS_PRIEST && race_ == RACE_DRAENEI|| !draenei_warrior && class_ == CLASS_WARRIOR && race_ == RACE_DRAENEI || !draenei_mage && class_ == CLASS_MAGE && race_ == RACE_DRAENEI
+			|| !draenei_hunter && class_ == CLASS_HUNTER && race_ == RACE_DRAENEI || !draenei_shaman && class_ == CLASS_SHAMAN && race_ == RACE_DRAENEI || !draenei_paladin && class_ == CLASS_PALADIN && race_ == RACE_DRAENEI
+			|| !draenei_deathknight && class_ == CLASS_DEATH_KNIGHT && race_ == RACE_DRAENEI)
 		{
-			data << uint8(CHAR_CREATE_DISABLED);
+			data << uint8(CHAR_LOGIN_DISABLED);
 			SendPacket(&data);
 			return;
 		}
 
 		// Function for Orc
-		if (!orc_rogue && CLASS_ROGUE && RACE_ORC || !orc_warrior && CLASS_WARRIOR && RACE_ORC || !orc_hunter && CLASS_HUNTER && RACE_ORC
-			|| !orc_warlock && CLASS_WARLOCK && RACE_ORC || !orc_shaman && CLASS_SHAMAN && RACE_ORC || !orc_deathknight && CLASS_DEATH_KNIGHT && RACE_ORC)
+		else if (!orc_rogue && class_ == CLASS_ROGUE && race_ == RACE_ORC || !orc_warrior && class_ == CLASS_WARRIOR && race_ == RACE_ORC || !orc_hunter && class_ == CLASS_HUNTER && race_ == RACE_ORC
+			|| !orc_warlock && class_ == CLASS_WARLOCK && race_ == RACE_ORC || !orc_shaman && class_ == CLASS_SHAMAN && race_ == RACE_ORC || !orc_deathknight && class_ == CLASS_DEATH_KNIGHT && race_ == RACE_ORC)
 		{
-			data << uint8(CHAR_CREATE_DISABLED);
+			data << uint8(CHAR_LOGIN_DISABLED);
 			SendPacket(&data);
 			return;
 		}
 		// Function for Forsaken
-		if (!forsaken_priest && CLASS_PRIEST && RACE_UNDEAD_PLAYER || !forsaken_rogue && CLASS_ROGUE && RACE_UNDEAD_PLAYER || !forsaken_mage && CLASS_MAGE && RACE_UNDEAD_PLAYER
-			|| !forsaken_warlock && CLASS_WARLOCK && RACE_UNDEAD_PLAYER || !forsaken_deathknight && CLASS_DEATH_KNIGHT && RACE_UNDEAD_PLAYER)
+		else if (!forsaken_priest && class_ == CLASS_PRIEST && race_ == RACE_UNDEAD_PLAYER || !forsaken_rogue && class_ == CLASS_ROGUE && race_ == RACE_UNDEAD_PLAYER || !forsaken_mage && class_ == CLASS_MAGE && race_ == RACE_UNDEAD_PLAYER
+			|| !forsaken_warlock && class_ == CLASS_WARLOCK && race_ == RACE_UNDEAD_PLAYER || !forsaken_deathknight && class_ == CLASS_DEATH_KNIGHT && race_ == RACE_UNDEAD_PLAYER)
 		{
-			data << uint8(CHAR_CREATE_DISABLED);
+			data << uint8(CHAR_LOGIN_DISABLED);
 			SendPacket(&data);
 			return;
 		}
 		// Function for Tauren
-		if (!tauren_warrior && CLASS_WARRIOR && RACE_TAUREN || !tauren_druid && CLASS_DRUID && RACE_TAUREN || !tauren_hunter && CLASS_HUNTER && RACE_TAUREN
-			|| !tauren_shaman && CLASS_SHAMAN && RACE_TAUREN || !tauren_deathknight && CLASS_DEATH_KNIGHT && RACE_TAUREN)
+		else if (!tauren_warrior && class_ == CLASS_WARRIOR && race_ == RACE_TAUREN || !tauren_druid && class_ == CLASS_DRUID && race_ == RACE_TAUREN || !tauren_hunter && class_ == CLASS_HUNTER && race_ == RACE_TAUREN
+			|| !tauren_shaman && class_ == CLASS_SHAMAN && race_ == RACE_TAUREN || !tauren_deathknight && class_ == CLASS_DEATH_KNIGHT && race_ == RACE_TAUREN)
 		{
-			data << uint8(CHAR_CREATE_DISABLED);
+			data << uint8(CHAR_LOGIN_DISABLED);
 			SendPacket(&data);
 			return;
 		}
 		// Function for Troll
-		if (!troll_priest && CLASS_PRIEST && RACE_TROLL || !troll_rogue && CLASS_ROGUE && RACE_TROLL || !troll_warrior && CLASS_WARRIOR && RACE_TROLL
-			|| !troll_mage && CLASS_MAGE && RACE_TROLL || !troll_hunter && CLASS_HUNTER && RACE_TROLL || !troll_shaman && CLASS_SHAMAN && RACE_TROLL
-			|| !troll_deathknight && CLASS_DEATH_KNIGHT && RACE_TROLL)
+		else if (!troll_priest && class_ == CLASS_PRIEST && race_ == RACE_TROLL || !troll_rogue && class_ == CLASS_ROGUE && race_ == RACE_TROLL || !troll_warrior && class_ == CLASS_WARRIOR && race_ == RACE_TROLL
+			|| !troll_mage && class_ == CLASS_MAGE && race_ == RACE_TROLL || !troll_hunter && class_ == CLASS_HUNTER && race_ == RACE_TROLL || !troll_shaman && class_ == CLASS_SHAMAN && race_ == RACE_TROLL
+			|| !troll_deathknight && class_ == CLASS_DEATH_KNIGHT && race_ == RACE_TROLL)
 		{
-			data << uint8(CHAR_CREATE_DISABLED);
+			data << uint8(CHAR_LOGIN_DISABLED);
 			SendPacket(&data);
 			return;
 		}
 		// Function for BloodElf
-		if (!bloodelf_priest && CLASS_PRIEST && RACE_BLOODELF || !bloodelf_rogue && CLASS_ROGUE && RACE_BLOODELF || !bloodelf_mage && CLASS_MAGE && RACE_BLOODELF
-			|| !bloodelf_hunter && CLASS_HUNTER && RACE_BLOODELF || !bloodelf_warlock && CLASS_WARLOCK && RACE_BLOODELF || !bloodelf_paladin && CLASS_PALADIN && RACE_BLOODELF
-			|| !bloodelf_deathknight && CLASS_DEATH_KNIGHT && RACE_BLOODELF)
+		else if (!bloodelf_priest && class_ == CLASS_PRIEST && race_ == RACE_BLOODELF || !bloodelf_rogue && class_ == CLASS_ROGUE && race_ == RACE_BLOODELF || !bloodelf_mage && class_ == CLASS_MAGE && race_ == RACE_BLOODELF
+			|| !bloodelf_hunter && class_ == CLASS_HUNTER && race_ == RACE_BLOODELF || !bloodelf_warlock && class_ == CLASS_WARLOCK && race_ == RACE_BLOODELF || !bloodelf_paladin && class_ == CLASS_PALADIN && race_ == RACE_BLOODELF
+			|| !bloodelf_deathknight && class_ == CLASS_DEATH_KNIGHT && race_ == RACE_BLOODELF)
 		{
-			data << uint8(CHAR_CREATE_DISABLED);
+			data << uint8(CHAR_LOGIN_DISABLED);
 			SendPacket(&data);
 			return;
 		}
