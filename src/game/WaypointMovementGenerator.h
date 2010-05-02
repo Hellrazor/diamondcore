@@ -46,7 +46,7 @@ class DIAMOND_DLL_SPEC PathMovementBase
         PathMovementBase() : i_currentNode(0) {}
         virtual ~PathMovementBase() {};
 
-        bool MovementInProgress(void) const { return i_currentNode < i_path.Size(); }
+        bool MovementInProgress(void) const { return i_currentNode < i_path->size(); }
 
         // template pattern, not defined .. override required
         void LoadPath(T &);
