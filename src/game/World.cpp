@@ -254,7 +254,6 @@ World::AddSession_ (WorldSession* s)
     s->SendAddonsInfo();
 
     WorldPacket pkt(SMSG_CLIENTCACHE_VERSION, 4);
-    pkt << uint32(getConfig(CONFIG_UINT32_CLIENTCACHE_VERSION));
     s->SendPacket(&pkt);
 
     s->SendTutorialsData();
@@ -338,7 +337,6 @@ bool World::RemoveQueuedPlayer(WorldSession* sess)
         pop_sess->SendAddonsInfo();
 
         WorldPacket pkt(SMSG_CLIENTCACHE_VERSION, 4);
-        pkt << uint32(getConfig(CONFIG_UINT32_CLIENTCACHE_VERSION));
         pop_sess->SendPacket(&pkt);
 
         pop_sess->SendAccountDataTimes(GLOBAL_CACHE_MASK);
@@ -749,17 +747,6 @@ void World::LoadConfigSettings(bool reload)
 
     setConfig(CONFIG_BOOL_KICK_PLAYER_ON_BAD_PACKET, "Network.KickOnBadPacket", false);
 
-    if(int clientCacheId = sConfig.GetIntDefault("ClientCacheVersion", 0))
-    {
-        // overwrite DB/old value
-        if(clientCacheId > 0)
-        {
-            setConfig(CONFIG_UINT32_CLIENTCACHE_VERSION, clientCacheId);
-            sLog.outString("Client cache version set to: %u", clientCacheId);
-        }
-        else
-            sLog.outError("ClientCacheVersion can't be negative %d, ignored.", clientCacheId);
-    }
 
     setConfig(CONFIG_UINT32_INSTANT_LOGOUT, "InstantLogout", SEC_MODERATOR);
 
