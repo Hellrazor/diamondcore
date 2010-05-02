@@ -2141,8 +2141,8 @@ void World::LoadDBVersion()
     {
         Field* fields = result->Fetch();
 
-        m_DBVersion              = fields[0].GetCppString();
-        m_CreatureEventAIVersion = fields[1].GetCppString();
+        m_DBVersion              = fields[3].GetCppString();
+        m_CreatureEventAIVersion = fields[2].GetCppString();
 
         // will be overwrite by config values if different and non-0
         setConfig(CONFIG_UINT32_CLIENTCACHE_VERSION, fields[2].GetUInt32());
