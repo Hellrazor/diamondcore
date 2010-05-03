@@ -35,6 +35,7 @@
 #include "ObjectGuid.h"
 #include "Policies/Singleton.h"
 #include "Database/SQLStorage.h"
+#include "Vehicle.h"
 
 #include <string>
 #include <map>
@@ -596,6 +597,14 @@ class ObjectMgr
             return NULL;
         }
 
+		VehicleAccessoryList const* GetVehicleAccessoryList(uint32 entry) const
+        {
+            VehicleAccessoryMap::const_iterator i = m_VehicleAccessoryMap.find(entry);
+            if (i != m_VehicleAccessoryMap.end())
+                return &itr->second;
+            return NULL;
+        }
+
         void LoadGuilds();
         void LoadArenaTeams();
         void LoadGroups();
@@ -647,6 +656,7 @@ class ObjectMgr
         void LoadPointOfInterestLocales();
         void LoadInstanceTemplate();
         void LoadMailLevelRewards();
+		void LoadVehicleAccessories();
 
         void LoadGossipText();
 
@@ -1044,6 +1054,8 @@ class ObjectMgr
         SpellClickInfoMap   mSpellClickInfoMap;
 
         ItemRequiredTargetMap m_ItemRequiredTarget;
+
+		VehicleAccessoryMap m_VehicleAccessoryMap;
 
         typedef             std::vector<LocaleConstant> LocalForIndex;
         LocalForIndex        m_LocalForIndex;

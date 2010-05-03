@@ -45,6 +45,7 @@
 #include "GossipDef.h"
 #include "Mail.h"
 #include "InstanceData.h"
+#include "Vehicle.h"
 
 #include <limits>
 
@@ -2137,6 +2138,49 @@ void ObjectMgr::LoadItemPrototypes()
 
     for(std::set<uint32>::const_iterator itr = notFoundOutfit.begin(); itr != notFoundOutfit.end(); ++itr)
         sLog.outErrorDb("Item (Entry: %u) not exist in `item_template` but referenced in `CharStartOutfit.dbc`", *itr);
+}
+
+void ObjectMgr::LoadVehicleAccessories()
+{
+    m_VehicleAccessoryMap.clear();
+
+    uint32 count = 0;
+
+    QueryResult* result = WorldDatabase.Query("SELECT `entry`, `accessory_entry`, `seat_id`, `minion` FROM `vehicle_accessory`");
+
+    if (!result)
+    {
+        sLog.outErrorDb(">> Loaded 0 LoadVehicleAccessor.");
+        return;
+    }
+    do
+    {
+        Field *fields = result->Fetch();
+
+        uint32 entry          = fields[0].GetUInt32();
+        uint32 accessoryEntry = fields[1].GetUInt32();
+        int8   seatId         = int8(fields[2].GetInt16());
+        bool   minion         = fields[3].GetBool();
+
+        if (!sCreatureStorage.LookupEntry<CreatureInfo>(entry))
+        {
+            sLog.outErrorDb("Table `vehicle_accessory`: creature template entry %u does not exist.", entry);
+            continue;
+        }
+
+        if (!sCreatureStorage.LookupEntry<CreatureInfo>(accessoryEntry))
+        {
+            sLog.outErrorDb("Table `vehicle_accessory`: Accessory %u does not exist.", accessoryEntry);
+            continue;
+        }
+
+        m_VehicleAccessoryMap[entry].push_back(VehicleAccessory(accessoryEntry, seatId, minion));
+
+        ++count;
+    }
+	while (result->NextRow());
+
+    sLog.outString(">> Loaded %u Vehicle Accessories", count);
 }
 
 void ObjectMgr::LoadItemRequiredTarget()

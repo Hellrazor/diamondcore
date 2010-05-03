@@ -49,6 +49,17 @@ enum PowerType
 
 #define MAX_SEAT 8
 
+struct VehicleAccessory
+{
+    explicit VehicleAccessory(uint32 _accessoryEntry, int8 _seatId, bool _minion) : accessoryEntry(_accessoryEntry), seatId(_seatId), minion(_minion) {}
+    uint32 accessoryEntry;
+    int8 seatId;
+    uint32 minion;
+};
+
+typedef std::vector<VehicleAccessory> VehicleAccessoryList;
+typedef std::map<uint32, VehicleAccessoryList> VehicleAccessoryMap;
+
 typedef std::map<int8, VehicleSeat> SeatMap;
 
 class Vehicle : public Creature
@@ -61,6 +72,7 @@ class Vehicle : public Creature
         void RemoveFromWorld();
 
         void Die();
+		void Reset();
         bool Create (uint32 guidlow, Map *map, uint32 phaseMask, uint32 Entry, uint32 vehicleId, uint32 team, const CreatureData *data = NULL);
 
         void setDeathState(DeathState s);                   // overwrite virtual Creature::setDeathState and Unit::setDeathState
@@ -103,6 +115,7 @@ class Vehicle : public Creature
         void InstallAllAccessories();
         Unit *GetPassenger(int8 seatId) const;
     protected:
+		Unit *vehicle;
         uint32 m_vehicleId;
         VehicleEntry const *m_vehicleInfo;
         VehicleDataStructure const *m_VehicleData;
@@ -111,6 +124,7 @@ class Vehicle : public Creature
         bool despawn;
         int32 m_spawnduration;
         void InstallAccessory(uint32 entry, int8 seatId, bool isVehicle = false, bool minion = true);
+		uint32 m_seatNum;
     private:
         void SaveToDB(uint32, uint8)                        // overwrited of Creature::SaveToDB     - don't must be called
         {
