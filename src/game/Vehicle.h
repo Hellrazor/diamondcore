@@ -24,7 +24,7 @@
 #include "Unit.h"
 #include "ObjectMgr.h"
 
-#define MAX_VEHICLE_SPELLS 8
+#define MAX_VEHICLE_SPELLS 10
 
 struct VehicleDataStructure
 {
