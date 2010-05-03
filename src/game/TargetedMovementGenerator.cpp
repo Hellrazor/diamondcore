@@ -22,7 +22,6 @@
 #include "Creature.h"
 #include "DestinationHolderImp.h"
 #include "World.h"
-#include "Unit.h"
 
 #define SMALL_ALPHA 0.05f
 
@@ -70,40 +69,9 @@ void TargetedMovementGeneratorMedium<T,D>::_setTargetLocation(T &owner)
         if( i_destinationHolder.HasDestination() && i_destinationHolder.GetDestinationDiff(x,y,z) < bothObjectSize )
             return;
     */
-    if (!i_destinationHolder.HasArrived())
-        return;
-    float myx,myy,myz;
-    //the Creature after us is actually in owner variable..
-    owner.GetPosition(myx,myy,myz);
-
-    if(i_path.Length)
-    {
-        // path exists, just need to update it
-        i_path.Start.x = myx;
-        i_path.Start.y = myy;
-        i_path.Start.z = myz;
-        i_path.End.x = x;
-        i_path.End.y = y;
-        i_path.End.z = z;
-        i_target->GetMap()->UpdatePath(&i_path);
-    }
-    else
-    {
-        // path doesn't exist, create one
-        i_path = i_target->GetMap()->GetPath(myx,myy,myz,x,y,z);
-    }
 
     Traveller<T> traveller(owner);
-    if(i_path.Length)
-    {
-        i_destinationHolder.SetDestination(traveller, i_path.NextDestination.x,i_path.NextDestination.y,i_path.NextDestination.z);
-    }
-    else
-    {
-        i_destinationHolder.SetDestination(traveller, x, y, z);
-    }
-
-    //sLog.outString("Moving to x[%.2f] y[%.2f] z[%.2f]", i_path.NextDestination.x, i_path.NextDestination.y, i_path.NextDestination.z);
+    i_destinationHolder.SetDestination(traveller, x, y, z);
 
     D::_addUnitStateMove(owner);
     if (owner.GetTypeId() == TYPEID_UNIT && ((Creature*)&owner)->canFly())
@@ -194,32 +162,21 @@ bool TargetedMovementGeneratorMedium<T,D>::Update(T &owner, const uint32 & time_
         //More distance let have better performance, less distance let have more sensitive reaction at target move.
 
         // try to counter precision differences
-        if ((i_path.Length && i_destinationHolder.GetDistance3dFromDestSq(i_path.End.x, i_path.End.y, i_path.End.z) >= dist * dist)
-            || (i_destinationHolder.GetDistance3dFromDestSq(*i_target.getTarget()) >= dist * dist))
+        if (i_destinationHolder.GetDistance3dFromDestSq(*i_target.getTarget()) >= dist * dist)
         {
-            // Set new Angle For Map::
-            if(i_path.Length)
-                owner.SetOrientation(owner.GetAngle(i_path.NextDestination.x, i_path.NextDestination.y));
-            else
-                owner.SetInFront(i_target.getTarget());
+            owner.SetInFront(i_target.getTarget());         // Set new Angle For Map::
 
             _setTargetLocation(owner);                      //Calculate New Dest and Send data To Player
         }
         // Update the Angle of the target only for Map::, no need to send packet for player
         else if (!i_angle && !owner.HasInArc(0.01f, i_target.getTarget()))
-            if(i_path.Length)
-                owner.SetOrientation(owner.GetAngle(i_path.NextDestination.x, i_path.NextDestination.y));
-            else
-                owner.SetInFront(i_target.getTarget());
+            owner.SetInFront(i_target.getTarget());
 
         if ((owner.IsStopped() && !i_destinationHolder.HasArrived()) || i_recalculateTravel)
         {
             i_recalculateTravel = false;
             //Angle update will take place into owner.StopMoving()
-            if(i_path.Length)
-                owner.SetOrientation(owner.GetAngle(i_path.NextDestination.x, i_path.NextDestination.y));
-            else
-                owner.SetInFront(i_target.getTarget());
+            owner.SetInFront(i_target.getTarget());
 
             owner.StopMoving();
             static_cast<D*>(this)->_reachTarget(owner);

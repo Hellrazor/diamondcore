@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug_NoPCH|Win32">
@@ -356,23 +356,6 @@
     <ClCompile Include="..\..\src\shared\vmap\VMapFactory.cpp" />
     <ClCompile Include="..\..\src\shared\vmap\VMapManager2.cpp" />
     <ClCompile Include="..\..\src\shared\vmap\WorldModel.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\ChunkyTriMesh.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\InputGeom.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\MeshLoaderObj.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Detour\DetourCommon.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Detour\DetourNavMesh.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Detour\DetourNavMeshBuilder.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Detour\DetourNode.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Recast\Recast.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Recast\RecastArea.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Recast\RecastContour.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Recast\RecastFilter.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Recast\RecastLog.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Recast\RecastMesh.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Recast\RecastMeshDetail.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Recast\RecastRasterization.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Recast\RecastRegion.cpp" />
-    <ClCompile Include="..\..\src\shared\pathfinding\Recast\RecastTimer.cpp" />
     <ClCompile Include="..\..\src\shared\Common.cpp" />
     <ClCompile Include="..\..\src\shared\ServiceWin32.cpp" />
     <ClCompile Include="..\..\src\shared\Threading.cpp" />
@@ -418,58 +401,9 @@
     <ClInclude Include="..\..\src\shared\vmap\VMapManager2.h" />
     <ClInclude Include="..\..\src\shared\vmap\VMapTools.h" />
     <ClInclude Include="..\..\src\shared\vmap\WorldModel.h" />
-    <ClInclude Include="..\..\src\shared\pathfinding\ChunkyTriMesh.h" />
-    <ClInclude Include="..\..\src\shared\pathfinding\InputGeom.h" />
-    <ClInclude Include="..\..\src\shared\pathfinding\MeshLoaderObj.h" />
-    <ClInclude Include="..\..\src\shared\pathfinding\Detour\DetourCommon.h" />
-    <ClInclude Include="..\..\src\shared\pathfinding\Detour\DetourNavMesh.h" />
-    <ClInclude Include="..\..\src\shared\pathfinding\Detour\DetourNavMeshBuilder.h" />
-    <ClInclude Include="..\..\src\shared\pathfinding\Detour\DetourNode.h" />
-    <ClInclude Include="..\..\src\shared\pathfinding\Recast\Recast.h" />
-    <ClInclude Include="..\..\src\shared\pathfinding\Recast\RecastLog.h" />
-    <ClInclude Include="..\..\src\shared\pathfinding\Recast\RecastTimer.h" />
     <ClInclude Include="..\..\src\shared\Common.h" />
     <ClInclude Include="..\..\src\shared\LockedQueue.h" />
-    <CustomBuild Include="..\..\src\shared\revision.h">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug_NoPCH|Win32'">Extract revision</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug_NoPCH|Win32'">cd "$(SolutionDir)..\src\shared"
-"$(TargetDir)\..\genrevision__$(Platform)_$(Configuration)\genrevision.exe" "..\.."
-</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug_NoPCH|Win32'">$(SolutionDir)../.svn/entries;$(SolutionDir)../_svn/entries;$(SolutionDir)../.git/FETCH_HEAD;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug_NoPCH|Win32'">revision.h;%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug_NoPCH|x64'">Extract revision</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug_NoPCH|x64'">cd "$(SolutionDir)..\src\shared"
-"$(TargetDir)\..\genrevision__Win32_$(Configuration)\genrevision.exe" "..\.."
-</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug_NoPCH|x64'">$(SolutionDir)../.svn/entries;$(SolutionDir)../_svn/entries;$(SolutionDir)../.git/FETCH_HEAD;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug_NoPCH|x64'">revision.h;%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Extract revision</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cd "$(SolutionDir)..\src\shared"
-"$(TargetDir)\..\genrevision__$(Platform)_$(Configuration)\genrevision.exe" "..\.."
-</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)../.svn/entries;$(SolutionDir)../_svn/entries;$(SolutionDir)../.git/FETCH_HEAD;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">revision.h;%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Extract revision</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cd "$(SolutionDir)..\src\shared"
-"$(TargetDir)\..\genrevision__Win32_$(Configuration)\genrevision.exe" "..\.."
-</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)../.svn/entries;$(SolutionDir)../_svn/entries;$(SolutionDir)../.git/FETCH_HEAD;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">revision.h;%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Extract revision</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cd "$(SolutionDir)..\src\shared"
-"$(TargetDir)\..\genrevision__$(Platform)_$(Configuration)\genrevision.exe" "..\.."
-</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)../.svn/entries;$(SolutionDir)../_svn/entries;$(SolutionDir)../.git/FETCH_HEAD;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">revision.h;%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Extract revision</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cd "$(SolutionDir)..\src\shared"
-"$(TargetDir)\..\genrevision__Win32_$(Configuration)\genrevision.exe" "..\.."
-</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)../.svn/entries;$(SolutionDir)../_svn/entries;$(SolutionDir)../.git/FETCH_HEAD;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">revision.h;%(Outputs)</Outputs>
-    </CustomBuild>
     <ClInclude Include="..\..\src\shared\revision_nr.h" />
-    <ClInclude Include="..\..\src\shared\revision_sql.h" />
     <ClInclude Include="..\..\src\shared\ServiceWin32.h" />
     <ClInclude Include="..\..\src\shared\Threading.h" />
   </ItemGroup>

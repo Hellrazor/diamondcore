@@ -226,16 +226,13 @@ void MotionMaster::MoveRandom()
 void
 MotionMaster::MoveTargetedHome()
 {
-    sLog.outError("Entered MotionMaster::MoveTargetedHome()");
     if(i_owner->hasUnitState(UNIT_STAT_FLEEING))
         return;
 
     Clear(false);
-    sLog.outError("MotionMaster::MoveTargetedHome() : Cleared");
 
     if(i_owner->GetTypeId()==TYPEID_UNIT && !((Creature*)i_owner)->GetCharmerOrOwnerGUID())
     {
-        sLog.outError("%s targeted home", i_owner->GetName());
         DEBUG_LOG("%s targeted home", i_owner->GetObjectGuid().GetString().c_str());
         Mutate(new HomeMovementGenerator<Creature>());
     }
@@ -243,18 +240,14 @@ MotionMaster::MoveTargetedHome()
     {
         if (Unit *target = ((Creature*)i_owner)->GetCharmerOrOwner())
         {
-            sLog.outError("%s follow to %s", i_owner->GetName(), target->GetName());
             DEBUG_LOG("%s follow to %s", i_owner->GetObjectGuid().GetString().c_str(), target->GetObjectGuid().GetString().c_str());
             Mutate(new FollowMovementGenerator<Creature>(*target,PET_FOLLOW_DIST,PET_FOLLOW_ANGLE));
         }
         else
         {
-            sLog.outError("%s attempt but fail to follow owner", i_owner->GetName());
             DEBUG_LOG("%s attempt but fail to follow owner", i_owner->GetObjectGuid().GetString().c_str());
         }
     }
-    else
-        sLog.outError("%s attempt targeted home", i_owner->GetObjectGuid().GetString().c_str());
 }
 
 void
