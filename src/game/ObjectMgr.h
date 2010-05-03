@@ -390,8 +390,6 @@ extern LanguageDesc lang_description[LANGUAGES_COUNT];
 DIAMOND_DLL_SPEC LanguageDesc const* GetLanguageDescByID(uint32 lang);
 
 class PlayerDumpReader;
-// vehicle system
-#define MAX_VEHICLE_SPELLS 6
 
 template<typename T>
 class IdGenerator
@@ -411,14 +409,6 @@ class IdGenerator
         T m_nextGuid;
 };
 
-struct VehicleDataStructure
-{
-    uint32 v_flags;                                         // vehicle flags, see enum CustomVehicleFLags
-    uint32 v_spells[MAX_VEHICLE_SPELLS];                    // spells
-    uint32 req_aura;                                        // requieres aura on player to enter (eg. in wintergrasp)
-};
-
-typedef UNORDERED_MAP<uint32, VehicleDataStructure> VehicleDataMap;
 typedef std::map<uint32,uint32> VehicleSeatDataMap;
 
 class ObjectMgr
@@ -601,7 +591,7 @@ class ObjectMgr
         {
             VehicleAccessoryMap::const_iterator i = m_VehicleAccessoryMap.find(entry);
             if (i != m_VehicleAccessoryMap.end())
-                return &itr->second;
+                return &i->second;
             return NULL;
         }
 

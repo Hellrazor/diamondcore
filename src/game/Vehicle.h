@@ -24,6 +24,17 @@
 #include "Unit.h"
 #include "ObjectMgr.h"
 
+#define MAX_VEHICLE_SPELLS 8
+
+struct VehicleDataStructure
+{
+    uint32 v_flags;                                         // vehicle flags, see enum CustomVehicleFLags
+    uint32 v_spells[MAX_VEHICLE_SPELLS];                    // spells
+    uint32 req_aura;                                        // requieres aura on player to enter (eg. in wintergrasp)
+};
+
+typedef UNORDERED_MAP<uint32, VehicleDataStructure> VehicleDataMap;
+
 struct VehicleSeat
 {
     VehicleSeatEntry const *seatInfo;
@@ -47,8 +58,6 @@ enum PowerType
     POWER_TYPE_STEAM  = 61
 };
 
-#define MAX_SEAT 8
-
 struct VehicleAccessory
 {
     explicit VehicleAccessory(uint32 _accessoryEntry, int8 _seatId, bool _minion) : accessoryEntry(_accessoryEntry), seatId(_seatId), minion(_minion) {}
@@ -59,6 +68,8 @@ struct VehicleAccessory
 
 typedef std::vector<VehicleAccessory> VehicleAccessoryList;
 typedef std::map<uint32, VehicleAccessoryList> VehicleAccessoryMap;
+
+#define MAX_SEAT 8
 
 typedef std::map<int8, VehicleSeat> SeatMap;
 

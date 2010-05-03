@@ -700,7 +700,7 @@ void Vehicle::BuildVehicleActionBar(Player *plr) const
 }
 void Vehicle::InstallAllAccessories()
 {
-    VehicleAccessoryList const* mVehicleList = sObjectMgr.GetVehicleAccessoryList(me->GetEntry());
+    VehicleAccessoryList const* mVehicleList = sObjectMgr.GetVehicleAccessoryList(vehicle->GetEntry());
     if (!mVehicleList)
         return;
 
