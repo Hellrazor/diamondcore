@@ -2123,22 +2123,22 @@ void World::UpdateMaxSessionCounters()
 
 void World::LoadDBVersion()
 {
-    QueryResult* result = WorldDatabase.Query("SELECT script_version, db_version FROM version LIMIT 1");
+    QueryResult* result = WorldDatabase.Query("SELECT db_version, script_version FROM version LIMIT 1");
     if(result)
     {
         Field* fields = result->Fetch();
 
-        m_DBVersion              = fields[1].GetCppString();
-        m_CreatureEventAIVersion = fields[2].GetCppString();
+        m_DBVersion              = fields[0].GetCppString();
+        m_CreatureEventAIVersion = fields[1].GetCppString();
 
         delete result;
     }
 
     if(m_DBVersion.empty())
-        m_DBVersion = "Unknown world database.";
+        m_DBVersion = "Unknown World DB.";
 
     if(m_CreatureEventAIVersion.empty())
-        m_CreatureEventAIVersion = "Unknown creature EventAI.";
+        m_CreatureEventAIVersion = "Unknown EventAI.";
 }
 
 void World::setConfig(eConfigUInt32Values index, char const* fieldname, uint32 defvalue)

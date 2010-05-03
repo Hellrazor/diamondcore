@@ -393,7 +393,6 @@ bool Master::_StartDB()
         sLog.outError("Database not specified in configuration file");
         return false;
     }
-    sLog.outString("World Database: %s", dbstring.c_str());
 
     ///- Initialise the world database
     if(!WorldDatabase.Initialize(dbstring.c_str()))
@@ -411,7 +410,6 @@ bool Master::_StartDB()
         WorldDatabase.HaltDelayThread();
         return false;
     }
-    sLog.outString("Character Database: %s", dbstring.c_str());
 
     ///- Initialise the Character database
     if(!CharacterDatabase.Initialize(dbstring.c_str()))
@@ -435,8 +433,6 @@ bool Master::_StartDB()
         return false;
     }
 
-    ///- Initialise the login database
-    sLog.outString("Login Database: %s", dbstring.c_str() );
     if(!loginDatabase.Initialize(dbstring.c_str()))
     {
         sLog.outError("Cannot connect to login database %s",dbstring.c_str());
@@ -467,8 +463,8 @@ bool Master::_StartDB()
 
     sWorld.LoadDBVersion();
 
-    sLog.outString("Using World DB: %s", sWorld.GetDBVersion());
-    sLog.outString("Using creature EventAI: %s", sWorld.GetCreatureEventAIVersion());
+    sLog.outString("World DB: %s", sWorld.GetDBVersion());
+	sLog.outString("EventAI: %s", sWorld.GetCreatureEventAIVersion());
     return true;
 }
 

@@ -16,10 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-/// \addtogroup realmd Realm Daemon
-/// @{
-/// \file
-
 #include "Common.h"
 #include "Database/DatabaseEnv.h"
 #include "RealmList.h"
@@ -74,14 +70,14 @@ void usage(const char *prog)
 /// Launch the realm server
 extern int main(int argc, char **argv)
 {
-    ///- Command line parsing to get the configuration file name
+	///- Command line parsing to get the configuration file name
     char const* cfg_file = _LOGON_CONFIG;
-    int c=1;
-    while( c < argc )
+    int c = 1;
+	while (c < argc)
     {
-        if( strcmp(argv[c],"-c") == 0)
+        if (strcmp(argv[c], "-c") == 0)
         {
-            if( ++c >= argc )
+            if (++c >= argc)
             {
                 sLog.outError("Runtime-Error: -c option requires an input argument");
                 usage(argv[0]);
@@ -91,7 +87,7 @@ extern int main(int argc, char **argv)
                 cfg_file = argv[c];
         }
 
-        if( strcmp(argv[c],"--version") == 0)
+        if (strcmp(argv[c], "--version") == 0)
         {
             printf("%s\n", _FULLVERSION);
             return 0;
@@ -101,34 +97,34 @@ extern int main(int argc, char **argv)
         ////////////
         //Services//
         ////////////
-        if( strcmp(argv[c],"-s") == 0)
+        if (strcmp(argv[c], "-s") == 0)
         {
-            if( ++c >= argc )
+            if (++c >= argc )
             {
                 sLog.outError("Runtime-Error: -s option requires an input argument");
                 usage(argv[0]);
                 return 1;
             }
-            if( strcmp(argv[c],"install") == 0)
+            if (strcmp(argv[c], "install") == 0)
             {
                 if (WinServiceInstall())
                     sLog.outString("Installing service");
                 return 1;
             }
-            else if( strcmp(argv[c],"uninstall") == 0)
+            else if (strcmp(argv[c], "uninstall") == 0)
             {
-                if(WinServiceUninstall())
+                if (WinServiceUninstall())
                     sLog.outString("Uninstalling service");
                 return 1;
             }
             else
             {
-                sLog.outError("Runtime-Error: unsupported option %s",argv[c]);
+                sLog.outError("Runtime-Error: unsupported option %s", argv[c]);
                 usage(argv[0]);
                 return 1;
             }
         }
-        if( strcmp(argv[c],"--service") == 0)
+        if (strcmp(argv[c], "--service") == 0)
         {
             WinServiceRun();
         }
@@ -159,11 +155,13 @@ extern int main(int argc, char **argv)
         sLog.outError("*****************************************************************************");
         clock_t pause = 3000 + clock();
 
-        while (pause > clock()) {}
+        while (pause > clock())
+		{
+		}
     }
 
     sLog.outDetail("%s (Library: %s)", OPENSSL_VERSION_TEXT, SSLeay_version(SSLEAY_VERSION));
-    if (SSLeay() < 0x009080bfL )
+    if (SSLeay() < 0x009080bfL)
     {
         sLog.outDetail("WARNING: Outdated version of OpenSSL lib. Logins to server may not work!");
         sLog.outDetail("WARNING: Minimal required version [OpenSSL 0.9.8k]");
@@ -171,20 +169,20 @@ extern int main(int argc, char **argv)
 
     /// realmd PID file creation
     std::string pidfile = sConfig.GetStringDefault("PidFile", "");
-    if(!pidfile.empty())
+    if (!pidfile.empty())
     {
         uint32 pid = CreatePIDFile(pidfile);
-        if( !pid )
+        if (!pid )
         {
-            sLog.outError( "Cannot create PID file %s.\n", pidfile.c_str() );
+            sLog.outError( "Cannot create PID file %s.\n", pidfile.c_str());
             return 1;
         }
 
-        sLog.outString( "Daemon PID: %u\n", pid );
+        sLog.outString("Daemon PID: %u\n", pid );
     }
 
     ///- Initialize the database connection
-    if(!StartDB())
+    if (!StartDB())
         return 1;
 
     ///- Get the list of realms for the server
@@ -196,21 +194,21 @@ extern int main(int argc, char **argv)
     }
 
     ///- Launch the listening network socket
-    port_t rmport = sConfig.GetIntDefault( "RealmServerPort", DEFAULT_REALMSERVER_PORT );
+    port_t rmport = sConfig.GetIntDefault("RealmServerPort", DEFAULT_REALMSERVER_PORT);
     std::string bind_ip = sConfig.GetStringDefault("BindIP", "0.0.0.0");
 
     SocketHandler h;
     ListenSocket<AuthSocket> authListenSocket(h);
-    if ( authListenSocket.Bind(bind_ip.c_str(),rmport))
+    if (authListenSocket.Bind(bind_ip.c_str(), rmport))
     {
-        sLog.outError( "LogonServer can not bind to %s:%d",bind_ip.c_str(), rmport );
+        sLog.outError("LogonServer can not bind to %s:%d", bind_ip.c_str(), rmport);
         return 1;
     }
 
     // cleanup query
     //set expired bans to inactive
-    loginDatabase.Execute("UPDATE account_banned SET active = 0 WHERE unbandate<=UNIX_TIMESTAMP() AND unbandate<>bandate");
-    loginDatabase.Execute("DELETE FROM ip_banned WHERE unbandate<=UNIX_TIMESTAMP() AND unbandate<>bandate");
+    loginDatabase.Execute("UPDATE account_banned SET active = 0 WHERE unbandate <= UNIX_TIMESTAMP() AND unbandate <> bandate");
+    loginDatabase.Execute("DELETE FROM ip_banned WHERE unbandate <= UNIX_TIMESTAMP() AND unbandate <> bandate");
 
     h.Add(&authListenSocket);
 
@@ -223,22 +221,22 @@ extern int main(int argc, char **argv)
         HANDLE hProcess = GetCurrentProcess();
 
         uint32 Aff = sConfig.GetIntDefault("UseProcessors", 0);
-        if(Aff > 0)
+        if (Aff > 0)
         {
             ULONG_PTR appAff;
             ULONG_PTR sysAff;
 
-            if(GetProcessAffinityMask(hProcess,&appAff,&sysAff))
+            if (GetProcessAffinityMask(hProcess, &appAff, &sysAff))
             {
                 ULONG_PTR curAff = Aff & appAff;            // remove non accessible processors
 
-                if(!curAff )
+                if (!curAff)
                 {
-                    sLog.outError("Processors marked in UseProcessors bitmask (hex) %x not accessible for realmd. Accessible processors bitmask (hex): %x",Aff,appAff);
+                    sLog.outError("Processors marked in UseProcessors bitmask (hex) %x not accessible for realmd. Accessible processors bitmask (hex): %x", Aff,appAff);
                 }
                 else
                 {
-                    if(SetProcessAffinityMask(hProcess,curAff))
+                    if (SetProcessAffinityMask(hProcess, curAff))
                         sLog.outString("Using processors (bitmask, hex): %x", curAff);
                     else
                         sLog.outError("Can't set used processors (hex): %x", curAff);
@@ -249,19 +247,18 @@ extern int main(int argc, char **argv)
 
         bool Prio = sConfig.GetBoolDefault("ProcessPriority", false);
 
-        if(Prio)
+        if (Prio)
         {
-            if(SetPriorityClass(hProcess,HIGH_PRIORITY_CLASS))
-                sLog.outString("realmd process priority class set to HIGH");
+            if (SetPriorityClass(hProcess,HIGH_PRIORITY_CLASS))
+                sLog.outString("LogonServer process priority class set to HIGH");
             else
-                sLog.outError("ERROR: Can't set realmd process priority class.");
-            sLog.outString();
+                sLog.outError("ERROR: Can't set LogonServer process priority class.");
         }
     }
     #endif
 
     // maximum counter for next ping
-    uint32 numLoops = (sConfig.GetIntDefault( "MaxPingTime", 30 ) * (MINUTE * 1000000 / 100000));
+    uint32 numLoops = (sConfig.GetIntDefault("MaxPingTime", 30) * (MINUTE * 1000000 / 100000));
     uint32 loopCounter = 0;
 
     ///- Wait for termination signal
@@ -270,15 +267,17 @@ extern int main(int argc, char **argv)
 
         h.Select(0, 100000);
 
-        if( (++loopCounter) == numLoops )
+        if ((++loopCounter) == numLoops)
         {
             loopCounter = 0;
             sLog.outDetail("Ping MySQL to keep connection alive");
             delete loginDatabase.Query("SELECT 1 FROM realmlist LIMIT 1");
         }
 #ifdef WIN32
-        if (m_ServiceStatus == 0) stopEvent = true;
-        while (m_ServiceStatus == 2) Sleep(1000);
+        if (m_ServiceStatus == 0)
+			stopEvent = true;
+        while (m_ServiceStatus == 2)
+			Sleep(1000);
 #endif
     }
 
@@ -288,7 +287,7 @@ extern int main(int argc, char **argv)
     ///- Remove signal handling before leaving
     UnhookSignals();
 
-    sLog.outString( "Halting process..." );
+    sLog.outString("Halting process...");
     return 0;
 }
 
@@ -316,18 +315,18 @@ void OnSignal(int s)
 bool StartDB()
 {
     std::string dbstring = sConfig.GetStringDefault("LoginDatabaseInfo", "");
-    if(dbstring.empty())
+    if (dbstring.empty())
     {
         sLog.outError("Database not specified");
         return false;
     }
 
     sLog.outString("Database: %s", dbstring.c_str() );
-    if(!loginDatabase.Initialize(dbstring.c_str()))
+    if (!loginDatabase.Initialize(dbstring.c_str()))
     {
         sLog.outError("Cannot connect to database");
         return false;
-        }
+	}
 
     return true;
 }
