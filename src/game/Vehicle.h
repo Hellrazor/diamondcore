@@ -119,7 +119,9 @@ class Vehicle : public Creature
             duration < 1 ? despawn = false : despawn = true;
             m_spawnduration = duration;
         }
-        VehicleDataStructure const* GetVehicleData() { return m_VehicleData; }
+
+		VehicleDataStructure const* GetVehicleData() { return m_VehicleData; }
+
         uint32 GetVehicleFlags() { return m_VehicleData ? m_VehicleData->v_flags : NULL; }
         uint32 GetCreationTime() { return m_creation_time; }
         void BuildVehicleActionBar(Player *plr) const;
@@ -130,6 +132,7 @@ class Vehicle : public Creature
         uint32 m_vehicleId;
         VehicleEntry const *m_vehicleInfo;
         VehicleDataStructure const *m_VehicleData;
+		VehicleDataMap mVehicleData;
         uint32 m_creation_time;
         SeatMap m_Seats;
         bool despawn;
