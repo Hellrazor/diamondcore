@@ -2804,6 +2804,10 @@ void ObjectMgr::LoadPlayerInfo()
             if (sWorld.getConfig(CONFIG_UINT32_EXPANSION) < 1 && (race == RACE_BLOODELF || race == RACE_DRAENEI))
                 continue;
 
+			// skip expansion races if not playing with expansion
+			if (sWorld.getConfig(CONFIG_UINT32_EXPANSION) < 3 && (race == RACE_GOBLIN || race == RACE_WORGEN))
+				continue;
+
             // skip expansion classes if not playing with expansion
             if (sWorld.getConfig(CONFIG_UINT32_EXPANSION) < 2 && class_ == CLASS_DEATH_KNIGHT)
                 continue;
